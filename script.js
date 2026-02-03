@@ -142,13 +142,18 @@ function initScrollAnimations() {
     '.activity-card, .project-card, .community-card, .easter-card, .contact-card, .gallery-item, .highlight-item'
   );
   
+  let animationCounter = 0;
+  
   const observer = new IntersectionObserver((entries) => {
-    entries.forEach((entry, index) => {
+    entries.forEach((entry) => {
       if (entry.isIntersecting) {
-        // Stagger the animation
+        // Stagger the animation using a counter for correct sequencing
+        const delay = animationCounter * 100;
+        animationCounter++;
+        
         setTimeout(() => {
           entry.target.classList.add('animate-in');
-        }, index * 100);
+        }, delay);
         
         observer.unobserve(entry.target);
       }
@@ -188,18 +193,19 @@ function initTypingEffect() {
   // Hide output initially
   terminalOutput.style.opacity = '0';
   
-  // Simulate typing
+  // Simulate typing with consistent timing
   const text = terminalCommand.textContent;
   terminalCommand.textContent = '';
   terminalCommand.style.opacity = '1';
   
   let charIndex = 0;
+  const typingDelay = 120; // Fixed delay for consistency
   
   function typeChar() {
     if (charIndex < text.length) {
       terminalCommand.textContent += text[charIndex];
       charIndex++;
-      setTimeout(typeChar, 100 + Math.random() * 50);
+      setTimeout(typeChar, typingDelay);
     } else {
       // Show output after typing
       setTimeout(() => {
