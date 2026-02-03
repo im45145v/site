@@ -43,11 +43,24 @@ npm start
 
 ## Deployment
 
-The site is configured for static export and can be deployed to:
-- GitHub Pages
-- Vercel
-- Netlify
-- Any static hosting platform
+The site is configured for static export and can be deployed to various platforms.
+
+### GitHub Pages (Automatic)
+
+A GitHub Actions workflow is included for automatic deployment to GitHub Pages:
+
+1. Go to repository Settings → Pages
+2. Set Source to "GitHub Actions"
+3. Push to `main` branch to trigger deployment
+
+The site will be available at: `https://im45145v.github.io/site`
+
+### Manual Deployment
 
 Build command: `npm run build`  
 Output directory: `out`
+
+Can also be deployed to:
+- Vercel: Connect repository and deploy
+- Netlify: Connect repository or drag & drop `out` folder
+- Any static hosting: Upload contents of `out` folder
