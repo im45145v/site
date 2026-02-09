@@ -90,6 +90,13 @@
       "current": true
     },
     {
+      "name": "IIM Ranchi Alumni Committee",
+      "role": "Junior Executive Member",
+      "logo": "assets/logos/iim-ranchi.png",
+      "description": "Building bridges between current students and alumni, fostering connections for career growth.",
+      "current": true
+    },
+    {
       "name": "AI Club SNIST",
       "role": "Tech Lead",
       "logo": "assets/logos/aiclub.png",

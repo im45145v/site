@@ -1,10 +1,12 @@
 /**
- * Ashish Malla Portfolio - Funky Interactions
- * "Playful chaos with a system underneath"
+ * Ashish Malla Portfolio - Funky Interactions v2.0
+ * "Playful chaos with a system underneath" 
+ * Updated: Feb 9, 2026 - Fixed cursor, communities, and nerd badge
  */
 
 document.addEventListener('DOMContentLoaded', () => {
   // Initialize all components
+  console.log('DOM loaded, initializing components...');
   initCursorFollower();
   initMobileMenu();
   initSmoothScroll();
@@ -14,6 +16,11 @@ document.addEventListener('DOMContentLoaded', () => {
   initUsernameReveal();
   initLogoRotation();
   loadDataFromJSON();
+  
+  // Initialize fun facts after a small delay to ensure DOM is ready
+  setTimeout(() => {
+    initFunFacts();
+  }, 100);
 });
 
 /**
@@ -40,6 +47,8 @@ async function loadDataFromJSON() {
     populateSpeaking(data.speaking);
     populateOrganizing(data.organizing);
     populateTerminal(data.education);
+    
+    console.log('Data populated from JSON');
     
   } catch (error) {
     console.error('Error loading data.json:', error);
@@ -127,12 +136,24 @@ function populateRoles(roles) {
  * Populate current communities
  */
 function populateCurrentCommunities(communities) {
-  if (!communities || !Array.isArray(communities)) return;
+  if (!communities || !Array.isArray(communities)) {
+    console.log('No communities data found');
+    return;
+  }
   
   const container = document.querySelector('.community-grid');
-  if (!container) return;
+  if (!container) {
+    console.log('Community grid not found');
+    return;
+  }
   
   const currentCommunities = communities.filter(c => c.current);
+  console.log('Current communities:', currentCommunities);
+  
+  if (currentCommunities.length === 0) {
+    console.log('No current communities found');
+    return;
+  }
   
   container.innerHTML = currentCommunities.map((comm, index) => {\n    const emoji = getEmojiForCommunity(comm.name);
     \n    if (index === 0) {\n      // Main card for first community\n      return `\n        <div class=\"community-card main-card\">\n          <div class=\"community-logo-img\">\n            <span class=\"logo-emoji\">${emoji}</span>\n          </div>\n          <h3 class=\"community-name\">${comm.name}</h3>\n          <p class=\"community-role\">${comm.role}</p>\n          <p class=\"community-desc\">${comm.description}</p>\n          ${comm.stats ? `\n            <div class=\"community-stats\">\n              <div class=\"stat\">\n                <span class=\"stat-number\">${comm.stats.members}</span>\n                <span class=\"stat-label\">members</span>\n              </div>\n              <div class=\"stat\">\n                <span class=\"stat-number\">${comm.stats.events}</span>\n                <span class=\"stat-label\">events</span>\n              </div>\n            </div>\n          ` : ''}\n          ${comm.url ? `<a href=\"${comm.url}\" target=\"_blank\" rel=\"noopener\" class=\"community-link\">Visit \u2192</a>` : ''}\n        </div>\n      `;\n    }\n    \n    return `\n      <div class=\"community-card\">\n        <div class=\"community-logo-img\">\n          <span class=\"logo-emoji\">${emoji}</span>\n        </div>\n        <h3 class=\"community-name\">${comm.name}</h3>\n        <p class=\"community-role\">${comm.role}</p>\n        <p class=\"community-desc\">${comm.description}</p>\n      </div>\n    `;\n  }).join('');
@@ -226,14 +247,15 @@ function populateTerminal(education) {
  */
 function getEmojiForCommunity(name) {
   const emojiMap = {
-    'Hackerabad': '\ud83c\udfd8',
-    'Postman': '\ud83d\udcae',
-    'GitHub': '\ud83d\udc08\u200d\u2b1b',
-    'AI Club SNIST': '\ud83e\udd16',
-    'HackPrix': '\ud83c\udfaf',
-    'CodeDay': '\ud83c\udf1f',
-    'OpinHacks': '\ud83d\udca1',
-    'Streamlit': '\ud83d\udcca'
+    'Hackerabad': '🏘',
+    'Postman': '📮',
+    'GitHub': '🐈‍⬛',
+    'AI Club SNIST': '🤖',
+    'HackPrix': '🎯',
+    'CodeDay': '🌟',
+    'OpinHacks': '💡',
+    'Streamlit': '📊',
+    'IIM Ranchi Alumni Committee': '🎓'
   };
   return emojiMap[name] || '\u2b50';
 }
@@ -243,12 +265,20 @@ function getEmojiForCommunity(name) {
  */
 function initCursorFollower() {
   const cursor = document.querySelector('.cursor-follower');
-  if (!cursor) return;
+  if (!cursor) {
+    console.log('Cursor follower element not found');
+    return;
+  }
+  
+  console.log('Initializing cursor follower');
   
   let mouseX = 0;
   let mouseY = 0;
   let cursorX = 0;
   let cursorY = 0;
+  
+  // Show cursor follower initially
+  cursor.style.opacity = '0.8';
   
   document.addEventListener('mousemove', (e) => {
     mouseX = e.clientX;
@@ -272,7 +302,7 @@ function initCursorFollower() {
   animateCursor();
   
   // Cursor effects on interactive elements
-  const interactiveElements = document.querySelectorAll('a, button, .activity-card, .community-card, .easter-card, .contact-card, .speaking-item');
+  const interactiveElements = document.querySelectorAll('a, button, .activity-card, .community-card, .easter-card, .contact-card, .speaking-item, .nerd-badge');
   
   interactiveElements.forEach(el => {
     el.addEventListener('mouseenter', () => {
@@ -518,13 +548,23 @@ function initFunFacts() {
     "🎵 Currently vibing to: Noga Erez",
     "📺 Probably watching a K-drama right now",
     "☕ Fueled by coffee and curiosity",
-    "🚀 Hackathon survival rate: surprisingly high"
+    "🚀 Hackathon survival rate: surprisingly high",
+    "🤓 I collect random facts like some people collect stamps",
+    "🌃 Night owl by nature, coffee dependent by choice",
+    "🎮 Still believe in cheat codes for life"
   ];
   
   const trigger = document.querySelector('.nerd-badge');
-  if (!trigger) return;
+  if (!trigger) {
+    console.log('Nerd badge not found!');
+    return;
+  }
   
-  trigger.addEventListener('click', () => {
+  console.log('Nerd badge found, adding click listener');
+  
+  trigger.addEventListener('click', (e) => {
+    console.log('Nerd badge clicked!');
+    e.preventDefault();
     const randomFact = facts[Math.floor(Math.random() * facts.length)];
     
     // Create temporary tooltip
@@ -572,8 +612,7 @@ function initFunFacts() {
   document.head.appendChild(style);
 }
 
-// Initialize fun facts
-document.addEventListener('DOMContentLoaded', initFunFacts);
+// Fun facts functionality is now initialized in main DOMContentLoaded
 
 /**
  * Easter egg: Konami code reveals secret message
