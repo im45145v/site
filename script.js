@@ -17,23 +17,225 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 /**
- * Load data from JSON file
+ * Load data from JSON file and populate page
  */
 async function loadDataFromJSON() {
   try {
     const response = await fetch('data.json');
-    if (!response.ok) return;
+    if (!response.ok) {
+      console.log('Using static HTML content');
+      return;
+    }
     
     const data = await response.json();
-    console.log('Data loaded:', data);
+    console.log('Data loaded from JSON:', data);
     
-    // Data is available for dynamic content updates
-    // Currently content is hardcoded in HTML for simplicity
-    // This can be expanded to dynamically populate sections
+    // Populate content from JSON
+    populateHeroSection(data.profile);
+    populateAboutBio(data.profile);
+    populateActivities(data.activities);
+    populateRoles(data.roles);
+    populateCurrentCommunities(data.communities);
+    populatePastCommunities(data.communities);
+    populateSpeaking(data.speaking);
+    populateOrganizing(data.organizing);
+    populateTerminal(data.education);
     
   } catch (error) {
-    console.log('Using static content (data.json not loaded)');
+    console.error('Error loading data.json:', error);
+    console.log('Using static HTML content');
   }
+}
+
+/**
+ * Populate hero section with profile data
+ */
+function populateHeroSection(profile) {
+  if (!profile) return;
+  
+  // Update status
+  const statusEl = document.getElementById('hero-status');
+  if (statusEl && profile.status) {\n    statusEl.textContent = profile.status;
+  }
+  
+  // Update name
+  const nameEl = document.getElementById('hero-name');
+  if (nameEl && profile.name) {
+    nameEl.textContent = profile.name + '.';
+    nameEl.setAttribute('data-text', profile.name + '.');
+  }
+  
+  // Update title in nav and footer
+  document.querySelectorAll('.logo-text').forEach(el => {
+    if (profile.username) el.textContent = profile.username;
+  });
+  
+  if (profile.tagline) {
+    document.title = `${profile.name} — ${profile.tagline}`;
+  }
+}
+
+/**
+ * Populate about bio section
+ */
+function populateAboutBio(profile) {
+  if (!profile || !profile.bio) return;
+  
+  const bioEl = document.querySelector('#about-bio p');
+  if (bioEl) {
+    bioEl.textContent = profile.bio;
+  }
+}
+
+/**
+ * Populate activities grid
+ */
+function populateActivities(activities) {
+  if (!activities || !Array.isArray(activities)) return;
+  
+  const container = document.getElementById('activities-container');
+  if (!container) return;
+  
+  container.innerHTML = activities.map(activity => `
+    <div class=\"activity-card\" data-tilt>
+      <div class=\"activity-icon\">${activity.icon}</div>
+      <h3 class=\"activity-title\">${activity.title}</h3>
+      <p class=\"activity-desc\">${activity.description}</p>
+      <div class=\"activity-badge\">${activity.badge}</div>
+    </div>
+  `).join('');
+}
+
+/**
+ * Populate roles strip
+ */
+function populateRoles(roles) {
+  if (!roles || !Array.isArray(roles)) return;
+  
+  const track = document.querySelector('.roles-track');
+  if (!track) return;
+  
+  // Duplicate roles for infinite scroll effect
+  const allRoles = [...roles, ...roles];
+  track.innerHTML = allRoles.map(role => `
+    <span class=\"role-item\">${role}</span>
+    <span class=\"role-divider\">\u2726</span>
+  `).join('');
+}
+
+/**
+ * Populate current communities
+ */
+function populateCurrentCommunities(communities) {
+  if (!communities || !Array.isArray(communities)) return;
+  
+  const container = document.querySelector('.community-grid');
+  if (!container) return;
+  
+  const currentCommunities = communities.filter(c => c.current);
+  
+  container.innerHTML = currentCommunities.map((comm, index) => {\n    const emoji = getEmojiForCommunity(comm.name);
+    \n    if (index === 0) {\n      // Main card for first community\n      return `\n        <div class=\"community-card main-card\">\n          <div class=\"community-logo-img\">\n            <span class=\"logo-emoji\">${emoji}</span>\n          </div>\n          <h3 class=\"community-name\">${comm.name}</h3>\n          <p class=\"community-role\">${comm.role}</p>\n          <p class=\"community-desc\">${comm.description}</p>\n          ${comm.stats ? `\n            <div class=\"community-stats\">\n              <div class=\"stat\">\n                <span class=\"stat-number\">${comm.stats.members}</span>\n                <span class=\"stat-label\">members</span>\n              </div>\n              <div class=\"stat\">\n                <span class=\"stat-number\">${comm.stats.events}</span>\n                <span class=\"stat-label\">events</span>\n              </div>\n            </div>\n          ` : ''}\n          ${comm.url ? `<a href=\"${comm.url}\" target=\"_blank\" rel=\"noopener\" class=\"community-link\">Visit \u2192</a>` : ''}\n        </div>\n      `;\n    }\n    \n    return `\n      <div class=\"community-card\">\n        <div class=\"community-logo-img\">\n          <span class=\"logo-emoji\">${emoji}</span>\n        </div>\n        <h3 class=\"community-name\">${comm.name}</h3>\n        <p class=\"community-role\">${comm.role}</p>\n        <p class=\"community-desc\">${comm.description}</p>\n      </div>\n    `;\n  }).join('');
+}
+
+/**
+ * Populate past communities
+ */
+function populatePastCommunities(communities) {
+  if (!communities || !Array.isArray(communities)) return;
+  
+  const container = document.querySelector('.past-communities');
+  if (!container) return;
+  
+  const pastCommunities = communities.filter(c => !c.current);
+  
+  container.innerHTML = pastCommunities.map(comm => {
+    const emoji = getEmojiForCommunity(comm.name);
+    return `
+      <div class=\"past-community-item\">\n        <span class=\"past-logo\">${emoji}</span>\n        <div class=\"past-info\">\n          <span class=\"past-name\">${comm.name}</span>\n          <span class=\"past-role\">${comm.role}</span>\n        </div>\n        ${comm.url ? `<a href=\"${comm.url}\" target=\"_blank\" rel=\"noopener\" class=\"past-link\">\u2197</a>` : ''}\n      </div>\n    `;
+  }).join('');
+}
+
+/**
+ * Populate speaking section
+ */
+function populateSpeaking(speaking) {
+  if (!speaking) return;
+  
+  const container = document.querySelector('.speaking-grid');
+  if (!container) return;
+  
+  // Get the latest year's data (2024 or 2026)
+  const latestYear = speaking[2026] || speaking[2024];
+  if (!latestYear) return;
+  
+  const speakerCategory = container.querySelector('.speaking-category');
+  if (speakerCategory) {
+    const itemsContainer = speakerCategory.querySelector('.speaking-items');
+    if (itemsContainer) {
+      itemsContainer.innerHTML = latestYear.map(item => `
+        <a href=\"${item.url}\" target=\"_blank\" rel=\"noopener\" class=\"speaking-item\">\n          <div class=\"speaking-info\">\n            <span class=\"speaking-event\">${item.event}</span>\n            <span class=\"speaking-topic\">${item.topic}</span>\n          </div>\n          <span class=\"speaking-type\">${item.type}</span>\n        </a>\n      `).join('');
+    }
+  }
+}
+
+/**
+ * Populate organizing section
+ */
+function populateOrganizing(organizing) {
+  if (!organizing) return;
+  
+  const container = document.querySelector('.speaking-grid');
+  if (!container) return;
+  
+  const categories = container.querySelectorAll('.speaking-category');
+  const organizerCategory = categories[1]; // Second category
+  
+  if (organizerCategory) {
+    const itemsContainer = organizerCategory.querySelector('.speaking-items');
+    if (itemsContainer) {
+      // Combine all years of organizing
+      const items2026 = organizing[2026] || [];
+      const items2024 = organizing[2024] || [];
+      const items2021_2023 = organizing['2021-2023'] || [];
+      const allItems = [...items2026, ...items2024, ...items2021_2023];
+      
+      itemsContainer.innerHTML = allItems.map(item => `
+        <a href=\"${item.url}\" target=\"_blank\" rel=\"noopener\" class=\"speaking-item\">\n          <div class=\"speaking-info\">\n            <span class=\"speaking-event\">${item.event}</span>\n            <span class=\"speaking-topic\">${item.role}</span>\n          </div>\n          <span class=\"speaking-type\">Event</span>\n        </a>\n      `).join('');
+    }
+  }
+}
+
+/**
+ * Populate terminal with education data
+ */
+function populateTerminal(education) {
+  if (!education || !Array.isArray(education)) return;
+  
+  const terminalOutput = document.querySelector('.terminal-output');
+  if (!terminalOutput) return;
+  
+  terminalOutput.innerHTML = education.map(edu => {
+    const status = edu.status === 'Pursuing' ? '(pursuing)' : '';
+    return `<span class=\"output-line\">\u2192 ${edu.degree} ${status} @ ${edu.institution}</span>`;
+  }).join('');
+}
+
+/**
+ * Helper function to get emoji for community
+ */
+function getEmojiForCommunity(name) {
+  const emojiMap = {
+    'Hackerabad': '\ud83c\udfd8',
+    'Postman': '\ud83d\udcae',
+    'GitHub': '\ud83d\udc08\u200d\u2b1b',
+    'AI Club SNIST': '\ud83e\udd16',
+    'HackPrix': '\ud83c\udfaf',
+    'CodeDay': '\ud83c\udf1f',
+    'OpinHacks': '\ud83d\udca1',
+    'Streamlit': '\ud83d\udcca'
+  };
+  return emojiMap[name] || '\u2b50';
 }
 
 /**

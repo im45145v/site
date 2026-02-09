@@ -43,37 +43,45 @@
   <!-- Hero Section -->
   <section class="hero" id="hero">
     <div class="hero-content">
+      <!-- Status Badge -->
       <div class="hero-badge">
         <span class="badge-dot"></span>
-        <span>Open to opportunities</span>
+        <span id="hero-status">Open to opportunities</span>
       </div>
       
-      <!-- Profile Image -->
-      <div class="profile-image-container">
-        <div class="profile-image">
-          <div class="profile-placeholder">
-            <span>👨‍💻</span>
+      <!-- Main Hero Content: Text Left + Image Right -->
+      <div class="hero-main">
+        <div class="hero-text">
+          <h1 class="hero-title">
+            <span class="greeting">Hey, I'm</span>
+            <span class="name glitch-text" data-text="Ashish." id="hero-name">Ashish.</span>
+          </h1>
+          
+          <div class="hero-taglines" id="hero-taglines">
+            <p class="tagline">I build things.</p>
+            <p class="tagline">I lead communities.</p>
+            <p class="tagline">I spend way too much time around hackathons.</p>
+          </div>
+
+          <div class="hero-personality" id="hero-personality">
+            <p class="personality-line">Introverted by default.</p>
+            <p class="personality-line">Expressive once comfortable.</p>
           </div>
         </div>
-        <div class="profile-glow"></div>
+        
+        <div class="hero-image">
+          <div class="profile-image-container">
+            <div class="profile-image">
+              <div class="profile-placeholder">
+                <span>👨‍💻</span>
+              </div>
+            </div>
+            <div class="profile-glow"></div>
+          </div>
+        </div>
       </div>
       
-      <h1 class="hero-title">
-        <span class="greeting">Hey, I'm</span>
-        <span class="name glitch-text" data-text="Ashish.">Ashish.</span>
-      </h1>
-      
-      <div class="hero-taglines">
-        <p class="tagline">I build things.</p>
-        <p class="tagline">I lead communities.</p>
-        <p class="tagline">I spend way too much time around hackathons.</p>
-      </div>
-
-      <div class="hero-personality">
-        <p class="personality-line">Introverted by default.</p>
-        <p class="personality-line">Expressive once comfortable.</p>
-      </div>
-
+      <!-- Terminal whoami -->
       <div class="hero-terminal">
         <div class="terminal-header">
           <span class="terminal-dot red"></span>
@@ -91,7 +99,10 @@
           </div>
         </div>
       </div>
+    </div>
 
+    <!-- Scroll hint at bottom -->
+    <div class="scroll-hint-wrapper">
       <div class="scroll-hint">
         <span class="scroll-text">scroll to explore</span>
         <div class="scroll-arrow">↓</div>
@@ -124,7 +135,7 @@
       <div class="section-doodle">📌</div>
     </div>
 
-    <div class="about-intro">
+    <div class="about-intro" id="about-bio">
       <p>I am an engineer with a passion for emerging technologies, particularly in DevOps, AI/ML, and web development, coupled with a strong dedication to open source. Skilled in Python, Go, various tools (GitHub, Postman, Docker and more), and possesses strong analytical and presentation skills.</p>
     </div>
 
@@ -178,7 +189,9 @@
         <span class="role-divider">✦</span>
         <span class="role-item">Postman Student Leader</span>
         <span class="role-divider">✦</span>
-        <span class="role-item">Tech Lead @ AI Club SNIST</span>
+        <!-- <span class="role-item">GitHub Campus Expert</span>
+        <span class="role-divider">✦</span> -->
+        <span class="role-item">Junior Executive Member @ Alumni Relations Committee IIM Ranchi</span>
         <span class="role-divider">✦</span>
         <span class="role-item">Hackathon Organizer</span>
         <span class="role-divider">✦</span>
@@ -188,8 +201,8 @@
         <span class="role-divider">✦</span>
         <span class="role-item">Postman Student Leader</span>
         <span class="role-divider">✦</span>
-        <span class="role-item">Tech Lead @ AI Club SNIST</span>
-        <span class="role-divider">✦</span>
+        <!-- <span class="role-item">GitHub Campus Expert</span>
+        <span class="role-divider">✦</span> -->
       </div>
     </div>
   </section>
@@ -240,21 +253,33 @@
         </p>
       </div>
 
-      <div class="community-card">
+      <!-- <div class="community-card">
         <div class="community-logo-img">
-          <span class="logo-emoji">🤖</span>
+          <span class="logo-emoji">🐈‍⬛</span>
         </div>
-        <h3 class="community-name">AI Club SNIST</h3>
-        <p class="community-role">Tech Lead</p>
+        <h3 class="community-name">GitHub</h3>
+        <p class="community-role">Campus Expert</p>
         <p class="community-desc">
-          Leading technical initiatives and AI/ML projects at the club.
+          Building and supporting developer communities on campus.
         </p>
-      </div>
+      </div> -->
     </div>
 
     <!-- Past Communities -->
     <h3 class="subsection-title">Past Roles</h3>
     <div class="past-communities">
+      <div class="past-community-item">        <span class="past-logo">🤖</span>
+        <div class="past-info">
+          <span class="past-name">AI Club SNIST</span>
+          <span class="past-role">Tech Lead</span>
+        </div>
+      </div>
+      <div class="past-community-item">        <span class="past-logo">🤖</span>
+        <div class="past-info">
+          <span class="past-name">AI Club SNIST</span>
+          <span class="past-role">Tech Lead</span>
+        </div>
+      </div>
       <div class="past-community-item">
         <span class="past-logo">🎯</span>
         <div class="past-info">
@@ -361,7 +386,7 @@
 
     <div class="speaking-grid">
       <div class="speaking-category">
-        <h3 class="speaking-year">2024 as a Speaker</h3>
+        <h3 class="speaking-year">Speaker</h3>
         <div class="speaking-items">
           <a href="https://www.linkedin.com/posts/codewavehub_codewavehub-learnathon-sociamedia-activity-7148940627433447424-uAkC" target="_blank" rel="noopener" class="speaking-item">
             <div class="speaking-info">
@@ -388,7 +413,7 @@
       </div>
 
       <div class="speaking-category">
-        <h3 class="speaking-year">2024 as an Organizer/Mentor</h3>
+        <h3 class="speaking-year">Organizer</h3>
         <div class="speaking-items">
           <a href="https://hackprix.tech" target="_blank" rel="noopener" class="speaking-item">
             <div class="speaking-info">
@@ -411,12 +436,6 @@
             </div>
             <span class="speaking-type">Series</span>
           </a>
-        </div>
-      </div>
-
-      <div class="speaking-category">
-        <h3 class="speaking-year">2021-2023 as an Organizer</h3>
-        <div class="speaking-items">
           <a href="https://twitter.com/opinhacks" target="_blank" rel="noopener" class="speaking-item">
             <div class="speaking-info">
               <span class="speaking-event">OpinHacks</span>
@@ -563,9 +582,9 @@
         <span class="logo-text username-font" title="Rotate 180° 👀">IM45145V</span>
       </div>
       <p class="footer-text">
-        Made with ☕ and occasional existential dread
+        Made with ☕ caffeine and occasional existential dread
       </p>
-      <p class="footer-year">© 2024 Ashish Malla</p>
+      <p class="footer-year">© 2026 Ashish Malla</p>
     </div>
     <div class="footer-easter">
       <span class="footer-secret">psst... you made it to the bottom 🎉</span>

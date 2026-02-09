@@ -102,4 +102,4 @@ php -S localhost:8000
 
 ## License
 
-© 2024 Ashish Malla
+© 2026 Ashish Malla

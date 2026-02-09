@@ -29,7 +29,7 @@
   
   /* Typography */
   --font-main: 'Space Grotesk', -apple-system, BlinkMacSystemFont, sans-serif;
-  --font-username: 'Gajraj One', cursive;
+  --font-username: 'Caveat', cursive;
   --font-handwritten: 'Caveat', cursive;
   --font-mono: 'JetBrains Mono', monospace;
   
@@ -173,6 +173,9 @@ button {
 .nav-logo {
   font-weight: 600;
   font-size: 1.3rem;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
 }
 
 .logo-text {
@@ -264,14 +267,13 @@ button {
    ============================================ */
 .profile-image-container {
   position: relative;
-  margin-bottom: var(--space-xl);
   display: flex;
   justify-content: center;
 }
 
 .profile-image {
-  width: 150px;
-  height: 150px;
+  width: 300px;
+  height: 300px;
   border-radius: 50%;
   overflow: hidden;
   border: 3px solid transparent;
@@ -296,7 +298,7 @@ button {
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 4rem;
+  font-size: 8rem;
 }
 
 .profile-glow {
@@ -304,11 +306,11 @@ button {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 200px;
-  height: 200px;
+  width: 350px;
+  height: 350px;
   background: var(--gradient-hero);
   border-radius: 50%;
-  filter: blur(40px);
+  filter: blur(60px);
   opacity: 0.3;
   z-index: 1;
 }
@@ -348,10 +350,31 @@ button {
 }
 
 .hero-content {
-  max-width: 800px;
+  max-width: 1200px;
+  width: 100%;
   position: relative;
   z-index: 1;
-  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-3xl);
+}
+
+.hero-main {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-4xl);
+  width: 100%;
+}
+
+.hero-text {
+  flex: 1;
+  max-width: 550px;
+}
+
+.hero-image {
+  flex-shrink: 0;
 }
 
 .hero-badge {
@@ -364,7 +387,6 @@ button {
   border-radius: var(--border-radius-xl);
   font-size: 0.85rem;
   color: var(--accent-success);
-  margin-bottom: var(--space-xl);
   animation: fadeInUp 0.6s ease;
 }
 
@@ -450,12 +472,11 @@ button {
   border-radius: var(--border-radius-md);
   border: 1px solid rgba(255, 255, 255, 0.1);
   overflow: hidden;
-  margin-bottom: var(--space-2xl);
   animation: fadeInUp 0.6s ease 0.4s both;
   text-align: left;
-  max-width: 500px;
-  margin-left: auto;
-  margin-right: auto;
+  max-width: 600px;
+  width: 100%;
+  margin: 0 auto;
 }
 
 .terminal-header {
@@ -519,6 +540,16 @@ button {
 @keyframes typeIn {
   from { opacity: 0; transform: translateX(-10px); }
   to { opacity: 1; transform: translateX(0); }
+}
+
+.scroll-hint-wrapper {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  position: absolute;
+  bottom: var(--space-2xl);
+  left: 0;
+  right: 0;
 }
 
 .scroll-hint {
@@ -1491,6 +1522,30 @@ button {
     font-size: 1.2rem;
   }
   
+  .nav-logo {
+    position: static;
+    transform: none;
+  }
+  
+  .hero-main {
+    flex-direction: column-reverse;
+    text-align: center;
+    gap: var(--space-2xl);
+  }
+  
+  .hero-text {
+    max-width: 100%;
+  }
+  
+  .hero-terminal {
+    max-width: 100%;
+  }
+  
+  .scroll-hint-wrapper {
+    position: static;
+    margin-top: var(--space-xl);
+  }
+  
   .activities-grid {
     grid-template-columns: 1fr;
   }
@@ -1515,9 +1570,29 @@ button {
     display: none;
   }
   
+  .hero-content {
+    flex-direction: column;
+    gap: var(--space-2xl);
+  }
+  
+  .hero-left {
+    text-align: center;
+    max-width: 100%;
+  }
+  
+  .hero-right {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
+  
   .profile-image {
-    width: 120px;
-    height: 120px;
+    width: 200px;
+    height: 200px;
+  }
+  
+  .profile-placeholder {
+    font-size: 6rem;
   }
 }
 

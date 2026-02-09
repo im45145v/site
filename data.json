@@ -65,7 +65,7 @@
   "roles": [
     "Events Lead @ Hackerabad",
     "Postman Student Leader",
-    "Tech Lead @ AI Club SNIST",
+    "Junior Executive Member @ Alumni Relations Committee IIM Ranchi",
     "Hackathon Organizer",
     "Community Builder"
   ],
@@ -93,8 +93,8 @@
       "name": "AI Club SNIST",
       "role": "Tech Lead",
       "logo": "assets/logos/aiclub.png",
-      "description": "Leading technical initiatives and AI/ML projects at the club.",
-      "current": true
+      "description": "Led technical initiatives and AI/ML projects at the club.",
+      "current": false
     },
     {
       "name": "HackPrix",
