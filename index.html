@@ -1,0 +1,595 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ashish Malla — Builder, Community Lead, Hackathon Nerd</title>
+  <meta name="description" content="I build things. I lead communities. I spend way too much time around hackathons.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Gajraj+One&family=Caveat:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <!-- Funky cursor follower -->
+  <div class="cursor-follower"></div>
+  
+  <!-- Navigation -->
+  <nav class="nav">
+    <div class="nav-logo">
+      <span class="logo-text username-font" title="Rotate 180° and you'll see it...">IM45145V</span>
+    </div>
+    <div class="nav-links">
+      <a href="#about" class="nav-link">about</a>
+      <a href="#community" class="nav-link">community</a>
+      <a href="#speaking" class="nav-link">speaking</a>
+      <a href="#contact" class="nav-link">say hi 👋</a>
+    </div>
+    <div class="nav-toggle" aria-label="Toggle menu">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+  </nav>
+
+  <!-- Mobile menu -->
+  <div class="mobile-menu">
+    <a href="#about" class="mobile-link">about</a>
+    <a href="#community" class="mobile-link">community</a>
+    <a href="#speaking" class="mobile-link">speaking</a>
+    <a href="#contact" class="mobile-link">say hi 👋</a>
+  </div>
+
+  <!-- Hero Section -->
+  <section class="hero" id="hero">
+    <div class="hero-content">
+      <!-- Status Badge -->
+      <div class="hero-badge">
+        <span class="badge-dot"></span>
+        <span id="hero-status">Open to opportunities</span>
+      </div>
+      
+      <!-- Main Hero Content: Text Left + Image Right -->
+      <div class="hero-main">
+        <div class="hero-text">
+          <h1 class="hero-title">
+            <span class="greeting">Hey, I'm</span>
+            <span class="name glitch-text" data-text="Ashish." id="hero-name">Ashish.</span>
+          </h1>
+          
+          <div class="hero-taglines" id="hero-taglines">
+            <p class="tagline">I build things.</p>
+            <p class="tagline">I lead communities.</p>
+            <p class="tagline">I spend way too much time around hackathons.</p>
+          </div>
+
+          <div class="hero-personality" id="hero-personality">
+            <p class="personality-line">Introverted by default.</p>
+            <p class="personality-line">Expressive once comfortable.</p>
+          </div>
+        </div>
+        
+        <div class="hero-image">
+          <div class="profile-image-container">
+            <div class="profile-image">
+              <div class="profile-placeholder">
+                <span>👨‍💻</span>
+              </div>
+            </div>
+            <div class="profile-glow"></div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Terminal whoami -->
+      <div class="hero-terminal">
+        <div class="terminal-header">
+          <span class="terminal-dot red"></span>
+          <span class="terminal-dot yellow"></span>
+          <span class="terminal-dot green"></span>
+        </div>
+        <div class="terminal-body">
+          <span class="terminal-prompt">$</span>
+          <span class="terminal-command typing-text">whoami</span>
+          <span class="terminal-cursor">▮</span>
+          <div class="terminal-output">
+            <span class="output-line">→ B.Tech @ SNIST</span>
+            <span class="output-line">→ MBA (pursuing) @ IIM Ranchi</span>
+            <span class="output-line">→ Tech + Management hybrid</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Scroll hint at bottom -->
+    <div class="scroll-hint-wrapper">
+      <div class="scroll-hint">
+        <span class="scroll-text">scroll to explore</span>
+        <div class="scroll-arrow">↓</div>
+      </div>
+    </div>
+
+    <div class="hero-side-note">
+      <span class="side-note-content">
+        (yes, the username is an easter egg)
+        <span class="side-note-arrow">←</span>
+      </span>
+    </div>
+
+    <!-- Floating stickers -->
+    <div class="floating-stickers">
+      <span class="sticker sticker-1">🚀</span>
+      <span class="sticker sticker-2">💻</span>
+      <span class="sticker sticker-3">⚡</span>
+      <span class="sticker sticker-4">🎯</span>
+    </div>
+  </section>
+
+  <!-- What I'm Usually Up To Section -->
+  <section class="section about-section" id="about">
+    <div class="section-header">
+      <h2 class="section-title">
+        <span class="title-decorator">//</span>
+        What I'm usually up to
+      </h2>
+      <div class="section-doodle">📌</div>
+    </div>
+
+    <div class="about-intro" id="about-bio">
+      <p>I am an engineer with a passion for emerging technologies, particularly in DevOps, AI/ML, and web development, coupled with a strong dedication to open source. Skilled in Python, Go, various tools (GitHub, Postman, Docker and more), and possesses strong analytical and presentation skills.</p>
+    </div>
+
+    <div class="activities-grid" id="activities-container">
+      <div class="activity-card" data-tilt>
+        <div class="activity-icon">🔧</div>
+        <h3 class="activity-title">Building</h3>
+        <p class="activity-desc">Shipping projects, breaking things, learning fast</p>
+        <div class="activity-badge">always</div>
+      </div>
+
+      <div class="activity-card" data-tilt>
+        <div class="activity-icon">🏆</div>
+        <h3 class="activity-title">Hackathons</h3>
+        <p class="activity-desc">Competing, judging, organizing—the whole circuit</p>
+        <div class="activity-badge">obsessed</div>
+      </div>
+
+      <div class="activity-card" data-tilt>
+        <div class="activity-icon">👥</div>
+        <h3 class="activity-title">Community</h3>
+        <p class="activity-desc">Growing spaces where builders actually build</p>
+        <div class="activity-badge">lead @ hackerabad</div>
+      </div>
+
+      <div class="activity-card" data-tilt>
+        <div class="activity-icon">🎤</div>
+        <h3 class="activity-title">Speaking</h3>
+        <p class="activity-desc">Workshops, talks, and sharing knowledge</p>
+        <div class="activity-badge">speaker</div>
+      </div>
+
+      <div class="activity-card" data-tilt>
+        <div class="activity-icon">🌉</div>
+        <h3 class="activity-title">Bridging</h3>
+        <p class="activity-desc">Tech ↔ Management (the rare dual-boot brain)</p>
+        <div class="activity-badge">hybrid</div>
+      </div>
+
+      <div class="activity-card" data-tilt>
+        <div class="activity-icon">📚</div>
+        <h3 class="activity-title">Learning</h3>
+        <p class="activity-desc">Currently: MBA things, always: random rabbit holes</p>
+        <div class="activity-badge">curious</div>
+      </div>
+    </div>
+
+    <div class="roles-strip">
+      <div class="roles-track">
+        <span class="role-item">Events Lead @ Hackerabad</span>
+        <span class="role-divider">✦</span>
+        <span class="role-item">Postman Student Leader</span>
+        <span class="role-divider">✦</span>
+        <!-- <span class="role-item">GitHub Campus Expert</span>
+        <span class="role-divider">✦</span> -->
+        <span class="role-item">Junior Executive Member @ Alumni Relations Committee IIM Ranchi</span>
+        <span class="role-divider">✦</span>
+        <span class="role-item">Hackathon Organizer</span>
+        <span class="role-divider">✦</span>
+        <span class="role-item">Community Builder</span>
+        <span class="role-divider">✦</span>
+        <span class="role-item">Events Lead @ Hackerabad</span>
+        <span class="role-divider">✦</span>
+        <span class="role-item">Postman Student Leader</span>
+        <span class="role-divider">✦</span>
+        <!-- <span class="role-item">GitHub Campus Expert</span>
+        <span class="role-divider">✦</span> -->
+      </div>
+    </div>
+  </section>
+
+  <!-- Community Section -->
+  <section class="section community-section" id="community">
+    <div class="section-header">
+      <h2 class="section-title">
+        <span class="title-decorator">//</span>
+        Community Work
+      </h2>
+      <p class="section-subtitle">where the real fun happens</p>
+    </div>
+
+    <!-- Current Communities -->
+    <h3 class="subsection-title">Currently Active</h3>
+    <div class="community-grid">
+      <div class="community-card main-card">
+        <div class="community-logo-img">
+          <span class="logo-emoji">🏠</span>
+        </div>
+        <h3 class="community-name">Hackerabad</h3>
+        <p class="community-role">Events Lead</p>
+        <p class="community-desc">
+          Hyderabad's builder community. Events, hackathons, workshops, and a Discord server that never sleeps.
+        </p>
+        <div class="community-stats">
+          <div class="stat">
+            <span class="stat-number">2000+</span>
+            <span class="stat-label">members</span>
+          </div>
+          <div class="stat">
+            <span class="stat-number">50+</span>
+            <span class="stat-label">events</span>
+          </div>
+        </div>
+        <a href="https://twitter.com/hackerabad" target="_blank" rel="noopener" class="community-link">Visit →</a>
+      </div>
+
+      <div class="community-card">
+        <div class="community-logo-img">
+          <span class="logo-emoji">📮</span>
+        </div>
+        <h3 class="community-name">Postman</h3>
+        <p class="community-role">Student Leader</p>
+        <p class="community-desc">
+          Teaching APIs, building workshops, converting REST skeptics one endpoint at a time.
+        </p>
+      </div>
+
+      <!-- <div class="community-card">
+        <div class="community-logo-img">
+          <span class="logo-emoji">🐈‍⬛</span>
+        </div>
+        <h3 class="community-name">GitHub</h3>
+        <p class="community-role">Campus Expert</p>
+        <p class="community-desc">
+          Building and supporting developer communities on campus.
+        </p>
+      </div> -->
+    </div>
+
+    <!-- Past Communities -->
+    <h3 class="subsection-title">Past Roles</h3>
+    <div class="past-communities">
+      <div class="past-community-item">        <span class="past-logo">🤖</span>
+        <div class="past-info">
+          <span class="past-name">AI Club SNIST</span>
+          <span class="past-role">Tech Lead</span>
+        </div>
+      </div>
+      <div class="past-community-item">        <span class="past-logo">🤖</span>
+        <div class="past-info">
+          <span class="past-name">AI Club SNIST</span>
+          <span class="past-role">Tech Lead</span>
+        </div>
+      </div>
+      <div class="past-community-item">
+        <span class="past-logo">🎯</span>
+        <div class="past-info">
+          <span class="past-name">HackPrix</span>
+          <span class="past-role">Core Organizer & Mentor</span>
+        </div>
+        <a href="https://hackprix.tech" target="_blank" rel="noopener" class="past-link">↗</a>
+      </div>
+      <div class="past-community-item">
+        <span class="past-logo">🌟</span>
+        <div class="past-info">
+          <span class="past-name">CodeDay Hyderabad</span>
+          <span class="past-role">Organizer</span>
+        </div>
+        <a href="https://twitter.com/CodeDay_Hyd" target="_blank" rel="noopener" class="past-link">↗</a>
+      </div>
+      <div class="past-community-item">
+        <span class="past-logo">💡</span>
+        <div class="past-info">
+          <span class="past-name">OpinHacks</span>
+          <span class="past-role">Ground Volunteer & Discord Team</span>
+        </div>
+        <a href="https://twitter.com/opinhacks" target="_blank" rel="noopener" class="past-link">↗</a>
+      </div>
+      <div class="past-community-item">
+        <span class="past-logo">📊</span>
+        <div class="past-info">
+          <span class="past-name">Streamlit</span>
+          <span class="past-role">Student Ambassador</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="community-highlights">
+      <h4 class="highlights-title">Event Highlights</h4>
+      <div class="highlight-item">
+        <span class="highlight-emoji">🎪</span>
+        <span class="highlight-text">Organized 10+ hackathons</span>
+      </div>
+      <div class="highlight-item">
+        <span class="highlight-emoji">🎓</span>
+        <span class="highlight-text">Led 20+ workshops</span>
+      </div>
+      <div class="highlight-item">
+        <span class="highlight-emoji">🤝</span>
+        <span class="highlight-text">Mentored 100+ hackers</span>
+      </div>
+      <div class="highlight-item">
+        <span class="highlight-emoji">🌐</span>
+        <span class="highlight-text">Built cross-city partnerships</span>
+      </div>
+    </div>
+
+    <!-- Photo Gallery -->
+    <div class="gallery-section">
+      <h4 class="gallery-title">
+        <span class="doodle-arrow">↓</span>
+        receipts, not claims
+        <span class="doodle-arrow">↓</span>
+      </h4>
+      <div class="photo-gallery" id="gallery-container">
+        <div class="gallery-item large">
+          <div class="gallery-placeholder">
+            <span class="placeholder-icon">📸</span>
+            <span class="placeholder-text">Hackathon event photo</span>
+          </div>
+          <div class="gallery-caption">Leading a hackathon session</div>
+        </div>
+        <div class="gallery-item">
+          <div class="gallery-placeholder">
+            <span class="placeholder-icon">🏆</span>
+            <span class="placeholder-text">Award ceremony</span>
+          </div>
+          <div class="gallery-caption">Team victory moment</div>
+        </div>
+        <div class="gallery-item">
+          <div class="gallery-placeholder">
+            <span class="placeholder-icon">🎤</span>
+            <span class="placeholder-text">Workshop photo</span>
+          </div>
+          <div class="gallery-caption">API workshop @ SNIST</div>
+        </div>
+        <div class="gallery-item">
+          <div class="gallery-placeholder">
+            <span class="placeholder-icon">👥</span>
+            <span class="placeholder-text">Community meetup</span>
+          </div>
+          <div class="gallery-caption">Hackerabad monthly meetup</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Speaking Section -->
+  <section class="section speaking-section" id="speaking">
+    <div class="section-header">
+      <h2 class="section-title">
+        <span class="title-decorator">//</span>
+        Speaking & Organizing
+      </h2>
+      <p class="section-subtitle">sharing what I learn</p>
+    </div>
+
+    <div class="speaking-grid">
+      <div class="speaking-category">
+        <h3 class="speaking-year">Speaker</h3>
+        <div class="speaking-items">
+          <a href="https://www.linkedin.com/posts/codewavehub_codewavehub-learnathon-sociamedia-activity-7148940627433447424-uAkC" target="_blank" rel="noopener" class="speaking-item">
+            <div class="speaking-info">
+              <span class="speaking-event">AI Verse by CodeWaveHub</span>
+              <span class="speaking-topic">MLOps Introduction</span>
+            </div>
+            <span class="speaking-type">Presentation</span>
+          </a>
+          <a href="https://x.com/hackerabad/status/1765243001113129114" target="_blank" rel="noopener" class="speaking-item">
+            <div class="speaking-info">
+              <span class="speaking-event">ABCD II by Hackerabad</span>
+              <span class="speaking-topic">APIs 101 using Postman</span>
+            </div>
+            <span class="speaking-type">Workshop</span>
+          </a>
+          <a href="https://www.linkedin.com/posts/codewavehub_hello-there-dive-into-the-future-of-programming-activity-7192810410851360768-fH0w" target="_blank" rel="noopener" class="speaking-item">
+            <div class="speaking-info">
+              <span class="speaking-event">HackPrix Pre-hackathon</span>
+              <span class="speaking-topic">APIs Acceleration: Turbocharge Your Hackathon Projects</span>
+            </div>
+            <span class="speaking-type">Workshop</span>
+          </a>
+        </div>
+      </div>
+
+      <div class="speaking-category">
+        <h3 class="speaking-year">Organizer</h3>
+        <div class="speaking-items">
+          <a href="https://hackprix.tech" target="_blank" rel="noopener" class="speaking-item">
+            <div class="speaking-info">
+              <span class="speaking-event">HackPrix Hackathon</span>
+              <span class="speaking-topic">Core Organizer & Mentor</span>
+            </div>
+            <span class="speaking-type">Hackathon</span>
+          </a>
+          <a href="https://x.com/hackerabad/status/1785286531575677299" target="_blank" rel="noopener" class="speaking-item">
+            <div class="speaking-info">
+              <span class="speaking-event">Pocket Workshop series</span>
+              <span class="speaking-topic">by Hackerabad</span>
+            </div>
+            <span class="speaking-type">Series</span>
+          </a>
+          <a href="https://x.com/hackerabad/status/1764319616984363059" target="_blank" rel="noopener" class="speaking-item">
+            <div class="speaking-info">
+              <span class="speaking-event">ABCD2 Workshop series</span>
+              <span class="speaking-topic">by Hackerabad</span>
+            </div>
+            <span class="speaking-type">Series</span>
+          </a>
+          <a href="https://twitter.com/opinhacks" target="_blank" rel="noopener" class="speaking-item">
+            <div class="speaking-info">
+              <span class="speaking-event">OpinHacks</span>
+              <span class="speaking-topic">Hackathon Organizer</span>
+            </div>
+            <span class="speaking-type">Hackathon</span>
+          </a>
+          <a href="https://twitter.com/CodeDay_Hyd" target="_blank" rel="noopener" class="speaking-item">
+            <div class="speaking-info">
+              <span class="speaking-event">CodeDay Hyderabad</span>
+              <span class="speaking-topic">Event Organizer</span>
+            </div>
+            <span class="speaking-type">Event</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Easter Egg Zone -->
+  <section class="section easter-section" id="easter">
+    <div class="easter-intro">
+      <p class="easter-text">
+        <span class="easter-icon">👀</span>
+        Oh you're still scrolling?
+      </p>
+      <p class="easter-subtext">Here's the fun stuff then.</p>
+    </div>
+
+    <div class="easter-content">
+      <div class="easter-card music-card">
+        <h4 class="easter-card-title">🎵 What I'm listening to</h4>
+        <div class="music-items">
+          <div class="music-item">
+            <span class="artist-name">Noga Erez</span>
+            <span class="music-vibe">electronic chaos energy</span>
+          </div>
+          <div class="music-item">
+            <span class="artist-name">Tai Verdes</span>
+            <span class="music-vibe">good vibes only</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="easter-card watching-card">
+        <h4 class="easter-card-title">📺 Currently watching</h4>
+        <p class="watching-text">Probably a K-drama.</p>
+        <p class="watching-subtext">(yes, I'm that guy)</p>
+        <div class="kdrama-icons">🎭 🇰🇷 💕</div>
+      </div>
+
+      <div class="easter-card heroes-card">
+        <h4 class="easter-card-title">🦸 Story preferences</h4>
+        <p class="heroes-text">Superhero origin stories hit different.</p>
+        <p class="heroes-subtext">The "becoming" part &gt; the "being" part</p>
+      </div>
+
+      <div class="easter-card username-card" id="username-reveal">
+        <h4 class="easter-card-title">🔮 The username thing</h4>
+        <div class="username-reveal">
+          <div class="username-normal">
+            <span class="username-label">My username:</span>
+            <span class="username-text username-font">IM45145V</span>
+          </div>
+          <div class="username-magic">
+            <span class="username-label">Rotate 180°:</span>
+            <span class="username-rotated username-font">IM45145V</span>
+          </div>
+          <div class="username-result">
+            <span class="username-label">You get:</span>
+            <span class="username-ashish">Ashish</span>
+          </div>
+          <p class="username-note">
+            (the <span class="special-four username-font">4</span> becomes an <span class="special-h">h</span>)
+          </p>
+        </div>
+        <div class="mind-blown">🤯</div>
+      </div>
+    </div>
+
+    <div class="nerd-badge">
+      <span class="nerd-text">certified internet nerd</span>
+      <span class="nerd-icon">🤓</span>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section class="section contact-section" id="contact">
+    <div class="contact-container">
+      <div class="contact-header">
+        <h2 class="contact-title">Let's connect?</h2>
+        <p class="contact-subtitle">
+          Want to build something? Collaborate? 
+          <br>Or just say hi?
+        </p>
+      </div>
+
+      <div class="contact-options">
+        <a href="mailto:hello@ashishmala.com" class="contact-card email-card">
+          <span class="contact-icon">📧</span>
+          <span class="contact-label">Email</span>
+          <span class="contact-value">Drop a mail</span>
+        </a>
+
+        <a href="https://linkedin.com/in/ashishmalla" target="_blank" rel="noopener" class="contact-card linkedin-card">
+          <span class="contact-icon">💼</span>
+          <span class="contact-label">LinkedIn</span>
+          <span class="contact-value">Let's connect</span>
+        </a>
+
+        <a href="https://twitter.com/im45145v" target="_blank" rel="noopener" class="contact-card twitter-card">
+          <span class="contact-icon">🐦</span>
+          <span class="contact-label">Twitter</span>
+          <span class="contact-value">Follow/DM</span>
+        </a>
+
+        <a href="https://github.com/im45145v" target="_blank" rel="noopener" class="contact-card github-card">
+          <span class="contact-icon">🐙</span>
+          <span class="contact-label">GitHub</span>
+          <span class="contact-value">See my code</span>
+        </a>
+
+        <a href="https://wall.im45145v.dev" target="_blank" rel="noopener" class="contact-card wall-card">
+          <span class="contact-icon">📝</span>
+          <span class="contact-label">Leave a Note</span>
+          <span class="contact-value">Sign my wall</span>
+        </a>
+      </div>
+
+      <div class="contact-footer">
+        <p class="footer-note">
+          Currently based in: <strong>IIM Ranchi</strong> (MBA mode)
+          <br>
+          Always open to interesting conversations.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-content">
+      <div class="footer-logo">
+        <span class="logo-text username-font" title="Rotate 180° 👀">IM45145V</span>
+      </div>
+      <p class="footer-text">
+        Made with ☕ caffeine and occasional existential dread
+      </p>
+      <p class="footer-year">© 2026 Ashish Malla</p>
+    </div>
+    <div class="footer-easter">
+      <span class="footer-secret">psst... you made it to the bottom 🎉</span>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,256 @@
+{
+  "profile": {
+    "name": "Ashish Malla",
+    "fullName": "Malla Venkata Sai Ashish",
+    "username": "IM45145V",
+    "tagline": "Engineer | Community Builder | Hackathon Enthusiast",
+    "bio": "I am an engineer with a passion for emerging technologies, particularly in DevOps, AI/ML, and web development, coupled with a strong dedication to open source.",
+    "avatar": "assets/images/profile.jpg",
+    "location": "IIM Ranchi",
+    "status": "Open to opportunities",
+    "skills": ["Python", "Go", "GitHub", "Postman", "Docker", "DevOps", "AI/ML", "Web Development"]
+  },
+  "education": [
+    {
+      "degree": "MBA",
+      "institution": "IIM Ranchi",
+      "status": "Pursuing",
+      "year": "2024-2026"
+    },
+    {
+      "degree": "B.Tech",
+      "institution": "SNIST",
+      "status": "Completed",
+      "year": "2020-2024"
+    }
+  ],
+  "activities": [
+    {
+      "icon": "🔧",
+      "title": "Building",
+      "description": "Shipping projects, breaking things, learning fast",
+      "badge": "always"
+    },
+    {
+      "icon": "🏆",
+      "title": "Hackathons",
+      "description": "Competing, judging, organizing—the whole circuit",
+      "badge": "obsessed"
+    },
+    {
+      "icon": "👥",
+      "title": "Community",
+      "description": "Growing spaces where builders actually build",
+      "badge": "lead @ hackerabad"
+    },
+    {
+      "icon": "🎤",
+      "title": "Speaking",
+      "description": "Workshops, talks, and sharing knowledge",
+      "badge": "speaker"
+    },
+    {
+      "icon": "🌉",
+      "title": "Bridging",
+      "description": "Tech ↔ Management (the rare dual-boot brain)",
+      "badge": "hybrid"
+    },
+    {
+      "icon": "📚",
+      "title": "Learning",
+      "description": "Currently: MBA things, always: random rabbit holes",
+      "badge": "curious"
+    }
+  ],
+  "roles": [
+    "Events Lead @ Hackerabad",
+    "Postman Student Leader",
+    "Junior Executive Member @ Alumni Relations Committee IIM Ranchi",
+    "Hackathon Organizer",
+    "Community Builder"
+  ],
+  "communities": [
+    {
+      "name": "Hackerabad",
+      "role": "Events Lead",
+      "logo": "assets/logos/hackerabad.png",
+      "description": "Hyderabad's builder community. Events, hackathons, workshops, and a Discord server that never sleeps.",
+      "url": "https://twitter.com/hackerabad",
+      "stats": {
+        "members": "2000+",
+        "events": "50+"
+      },
+      "current": true
+    },
+    {
+      "name": "Postman",
+      "role": "Student Leader",
+      "logo": "assets/logos/postman.png",
+      "description": "Teaching APIs, building workshops, converting REST skeptics one endpoint at a time.",
+      "current": true
+    },
+    {
+      "name": "IIM Ranchi Alumni Committee",
+      "role": "Junior Executive Member",
+      "logo": "assets/logos/iim-ranchi.png",
+      "description": "Building bridges between current students and alumni, fostering connections for career growth.",
+      "current": true
+    },
+    {
+      "name": "AI Club SNIST",
+      "role": "Tech Lead",
+      "logo": "assets/logos/aiclub.png",
+      "description": "Led technical initiatives and AI/ML projects at the club.",
+      "current": false
+    },
+    {
+      "name": "HackPrix",
+      "role": "Core Organizer & Mentor",
+      "logo": "assets/logos/hackprix.png",
+      "description": "Organized and mentored at HackPrix Hackathon.",
+      "url": "https://hackprix.tech",
+      "current": false
+    },
+    {
+      "name": "CodeDay",
+      "role": "Organizer",
+      "logo": "assets/logos/codeday.png",
+      "description": "Organized CodeDay Hyderabad events.",
+      "url": "https://twitter.com/CodeDay_Hyd",
+      "current": false
+    },
+    {
+      "name": "OpinHacks",
+      "role": "Ground Volunteer & Discord Team",
+      "logo": "assets/logos/opinhacks.png",
+      "description": "Volunteered and managed Discord community.",
+      "url": "https://twitter.com/opinhacks",
+      "current": false
+    },
+    {
+      "name": "Streamlit",
+      "role": "Student Ambassador",
+      "logo": "assets/logos/streamlit.png",
+      "description": "Promoted Streamlit and helped developers build data apps.",
+      "current": false
+    }
+  ],
+  "speaking": {
+    "2024": [
+      {
+        "event": "AI Verse by CodeWaveHub",
+        "topic": "MLOps Introduction",
+        "type": "Presentation",
+        "url": "https://www.linkedin.com/posts/codewavehub_codewavehub-learnathon-sociamedia-activity-7148940627433447424-uAkC"
+      },
+      {
+        "event": "ABCD II by Hackerabad",
+        "topic": "APIs 101 using Postman",
+        "type": "Tutorial/Workshop",
+        "url": "https://x.com/hackerabad/status/1765243001113129114"
+      },
+      {
+        "event": "HackPrix Pre-hackathon workshop",
+        "topic": "APIs Acceleration: Turbocharge Your Hackathon Projects",
+        "type": "Workshop",
+        "url": "https://www.linkedin.com/posts/codewavehub_hello-there-dive-into-the-future-of-programming-activity-7192810410851360768-fH0w"
+      }
+    ]
+  },
+  "organizing": {
+    "2024": [
+      {
+        "event": "HackPrix Hackathon",
+        "role": "Core Organizer & Mentor",
+        "url": "https://hackprix.tech"
+      },
+      {
+        "event": "Pocket Workshop series by Hackerabad",
+        "role": "Organizer",
+        "url": "https://x.com/hackerabad/status/1785286531575677299"
+      },
+      {
+        "event": "ABCD2 Workshop series by Hackerabad",
+        "role": "Organizer",
+        "url": "https://x.com/hackerabad/status/1764319616984363059"
+      }
+    ],
+    "2021-2023": [
+      {
+        "event": "OpinHacks",
+        "role": "Organizer",
+        "url": "https://twitter.com/opinhacks"
+      },
+      {
+        "event": "CodeDay Hyderabad",
+        "role": "Organizer",
+        "url": "https://twitter.com/CodeDay_Hyd"
+      }
+    ]
+  },
+  "highlights": [
+    {
+      "emoji": "🎪",
+      "text": "Organized 10+ hackathons"
+    },
+    {
+      "emoji": "🎓",
+      "text": "Led 20+ workshops"
+    },
+    {
+      "emoji": "🤝",
+      "text": "Mentored 100+ hackers"
+    },
+    {
+      "emoji": "🌐",
+      "text": "Built cross-city partnerships"
+    }
+  ],
+  "gallery": [
+    {
+      "src": "assets/images/hackathon1.jpg",
+      "caption": "Leading a hackathon session",
+      "alt": "Hackathon event photo"
+    },
+    {
+      "src": "assets/images/award.jpg",
+      "caption": "Team victory moment",
+      "alt": "Award ceremony"
+    },
+    {
+      "src": "assets/images/workshop.jpg",
+      "caption": "API workshop @ SNIST",
+      "alt": "Workshop photo"
+    },
+    {
+      "src": "assets/images/meetup.jpg",
+      "caption": "Hackerabad monthly meetup",
+      "alt": "Community meetup"
+    }
+  ],
+  "funFacts": {
+    "music": [
+      {
+        "artist": "Noga Erez",
+        "vibe": "electronic chaos energy"
+      },
+      {
+        "artist": "Tai Verdes",
+        "vibe": "good vibes only"
+      }
+    ],
+    "watching": "Probably a K-drama",
+    "storyPreference": "Superhero origin stories hit different. The 'becoming' part > the 'being' part"
+  },
+  "contact": {
+    "email": "hello@ashishmala.com",
+    "linkedin": "https://linkedin.com/in/ashishmalla",
+    "twitter": "https://twitter.com/im45145v",
+    "github": "https://github.com/im45145v",
+    "wall": "https://wall.im45145v.dev"
+  },
+  "links": {
+    "devpost": "https://devpost.com/im45145v",
+    "github": "https://github.com/im45145v"
+  }
+}
