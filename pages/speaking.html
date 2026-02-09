@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Speaking & Organizing — Ashish Malla</title>
+  <meta name="description" content="Speaking sessions, workshops, and organizing work by Ashish Malla">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Gajraj+One&family=Caveat:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../styles.css">
+  <style>
+    .page-header {
+      padding: 120px var(--space-xl) var(--space-3xl);
+      text-align: center;
+      background: var(--gradient-glow);
+    }
+    
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-sm);
+      color: var(--accent-primary);
+      margin-bottom: var(--space-xl);
+      transition: var(--transition-fast);
+    }
+    
+    .back-link:hover {
+      color: var(--accent-secondary);
+    }
+    
+    .page-title {
+      font-size: clamp(2.5rem, 6vw, 4rem);
+      background: var(--gradient-hero);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: var(--space-md);
+    }
+    
+    .page-subtitle {
+      color: var(--text-secondary);
+      font-size: 1.2rem;
+    }
+    
+    .content-section {
+      padding: var(--space-3xl) var(--space-xl);
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+    
+    .year-section {
+      margin-bottom: var(--space-3xl);
+    }
+    
+    .year-title {
+      font-size: 1.5rem;
+      color: var(--accent-secondary);
+      margin-bottom: var(--space-xl);
+      padding-bottom: var(--space-sm);
+      border-bottom: 2px solid rgba(6, 182, 212, 0.3);
+    }
+    
+    .event-card {
+      background: var(--gradient-card);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: var(--border-radius-lg);
+      padding: var(--space-xl);
+      margin-bottom: var(--space-lg);
+      transition: var(--transition-normal);
+    }
+    
+    .event-card:hover {
+      border-color: rgba(124, 58, 237, 0.3);
+      transform: translateX(10px);
+    }
+    
+    .event-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: var(--space-md);
+    }
+    
+    .event-name {
+      font-size: 1.3rem;
+      font-weight: 600;
+      margin-bottom: var(--space-xs);
+    }
+    
+    .event-topic {
+      color: var(--text-secondary);
+    }
+    
+    .event-type {
+      font-size: 0.75rem;
+      background: rgba(124, 58, 237, 0.2);
+      color: var(--accent-primary);
+      padding: var(--space-xs) var(--space-sm);
+      border-radius: var(--border-radius-sm);
+      text-transform: uppercase;
+    }
+    
+    .event-link {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-sm);
+      color: var(--accent-primary);
+      font-size: 0.9rem;
+      margin-top: var(--space-md);
+    }
+    
+    .event-link:hover {
+      color: var(--accent-secondary);
+    }
+  </style>
+</head>
+<body>
+  <!-- Navigation -->
+  <nav class="nav">
+    <div class="nav-logo">
+      <a href="../index.html" class="logo-text username-font">IM45145V</a>
+    </div>
+    <div class="nav-links">
+      <a href="../index.html#about" class="nav-link">about</a>
+      <a href="../index.html#community" class="nav-link">community</a>
+      <a href="../index.html#speaking" class="nav-link">speaking</a>
+      <a href="../index.html#contact" class="nav-link">say hi 👋</a>
+    </div>
+  </nav>
+
+  <header class="page-header">
+    <a href="../index.html" class="back-link">← Back to Home</a>
+    <h1 class="page-title">Speaking & Organizing</h1>
+    <p class="page-subtitle">Workshops, talks, and events I've been part of</p>
+  </header>
+
+  <main class="content-section">
+    <section class="year-section">
+      <h2 class="year-title">2024 — Speaker Sessions</h2>
+      
+      <div class="event-card">
+        <div class="event-header">
+          <div>
+            <h3 class="event-name">AI Verse by CodeWaveHub</h3>
+            <p class="event-topic">MLOps Introduction</p>
+          </div>
+          <span class="event-type">Presentation</span>
+        </div>
+        <a href="https://www.linkedin.com/posts/codewavehub_codewavehub-learnathon-sociamedia-activity-7148940627433447424-uAkC" target="_blank" rel="noopener" class="event-link">
+          View on LinkedIn →
+        </a>
+      </div>
+      
+      <div class="event-card">
+        <div class="event-header">
+          <div>
+            <h3 class="event-name">ABCD II by Hackerabad</h3>
+            <p class="event-topic">APIs 101 using Postman</p>
+          </div>
+          <span class="event-type">Workshop</span>
+        </div>
+        <a href="https://x.com/hackerabad/status/1765243001113129114" target="_blank" rel="noopener" class="event-link">
+          View on Twitter →
+        </a>
+      </div>
+      
+      <div class="event-card">
+        <div class="event-header">
+          <div>
+            <h3 class="event-name">HackPrix Pre-hackathon Workshop</h3>
+            <p class="event-topic">APIs Acceleration: Turbocharge Your Hackathon Projects</p>
+          </div>
+          <span class="event-type">Workshop</span>
+        </div>
+        <a href="https://www.linkedin.com/posts/codewavehub_hello-there-dive-into-the-future-of-programming-activity-7192810410851360768-fH0w" target="_blank" rel="noopener" class="event-link">
+          View on LinkedIn →
+        </a>
+      </div>
+    </section>
+
+    <section class="year-section">
+      <h2 class="year-title">2024 — Organizer & Mentor</h2>
+      
+      <div class="event-card">
+        <div class="event-header">
+          <div>
+            <h3 class="event-name">HackPrix Hackathon</h3>
+            <p class="event-topic">Core Organizer & Mentor</p>
+          </div>
+          <span class="event-type">Hackathon</span>
+        </div>
+        <a href="https://hackprix.tech" target="_blank" rel="noopener" class="event-link">
+          Visit Website →
+        </a>
+      </div>
+      
+      <div class="event-card">
+        <div class="event-header">
+          <div>
+            <h3 class="event-name">Pocket Workshop Series</h3>
+            <p class="event-topic">by Hackerabad</p>
+          </div>
+          <span class="event-type">Series</span>
+        </div>
+        <a href="https://x.com/hackerabad/status/1785286531575677299" target="_blank" rel="noopener" class="event-link">
+          View on Twitter →
+        </a>
+      </div>
+      
+      <div class="event-card">
+        <div class="event-header">
+          <div>
+            <h3 class="event-name">ABCD2 Workshop Series</h3>
+            <p class="event-topic">by Hackerabad</p>
+          </div>
+          <span class="event-type">Series</span>
+        </div>
+        <a href="https://x.com/hackerabad/status/1764319616984363059" target="_blank" rel="noopener" class="event-link">
+          View on Twitter →
+        </a>
+      </div>
+    </section>
+
+    <section class="year-section">
+      <h2 class="year-title">2021-2023 — Organizing</h2>
+      
+      <div class="event-card">
+        <div class="event-header">
+          <div>
+            <h3 class="event-name">OpinHacks</h3>
+            <p class="event-topic">Hackathon Organizer</p>
+          </div>
+          <span class="event-type">Hackathon</span>
+        </div>
+        <a href="https://twitter.com/opinhacks" target="_blank" rel="noopener" class="event-link">
+          View on Twitter →
+        </a>
+      </div>
+      
+      <div class="event-card">
+        <div class="event-header">
+          <div>
+            <h3 class="event-name">CodeDay Hyderabad</h3>
+            <p class="event-topic">Event Organizer</p>
+          </div>
+          <span class="event-type">Event</span>
+        </div>
+        <a href="https://twitter.com/CodeDay_Hyd" target="_blank" rel="noopener" class="event-link">
+          View on Twitter →
+        </a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-content">
+      <div class="footer-logo">
+        <span class="logo-text username-font">IM45145V</span>
+      </div>
+      <p class="footer-text">
+        Made with ☕ and occasional existential dread
+      </p>
+      <p class="footer-year">© 2024 Ashish Malla</p>
+    </div>
+  </footer>
+
+  <script src="../script.js"></script>
+</body>
+</html>

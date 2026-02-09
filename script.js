@@ -1,5 +1,5 @@
 /**
- * Ashish Mala Portfolio - Funky Interactions
+ * Ashish Malla Portfolio - Funky Interactions
  * "Playful chaos with a system underneath"
  */
 
@@ -8,12 +8,33 @@ document.addEventListener('DOMContentLoaded', () => {
   initCursorFollower();
   initMobileMenu();
   initSmoothScroll();
-  initProjectExpand();
   initScrollAnimations();
   initTypingEffect();
   initHoverEffects();
   initUsernameReveal();
+  initLogoRotation();
+  loadDataFromJSON();
 });
+
+/**
+ * Load data from JSON file
+ */
+async function loadDataFromJSON() {
+  try {
+    const response = await fetch('data.json');
+    if (!response.ok) return;
+    
+    const data = await response.json();
+    console.log('Data loaded:', data);
+    
+    // Data is available for dynamic content updates
+    // Currently content is hardcoded in HTML for simplicity
+    // This can be expanded to dynamically populate sections
+    
+  } catch (error) {
+    console.log('Using static content (data.json not loaded)');
+  }
+}
 
 /**
  * Custom cursor follower
@@ -49,7 +70,7 @@ function initCursorFollower() {
   animateCursor();
   
   // Cursor effects on interactive elements
-  const interactiveElements = document.querySelectorAll('a, button, .activity-card, .project-card, .easter-card, .contact-card');
+  const interactiveElements = document.querySelectorAll('a, button, .activity-card, .community-card, .easter-card, .contact-card, .speaking-item');
   
   interactiveElements.forEach(el => {
     el.addEventListener('mouseenter', () => {
@@ -113,23 +134,17 @@ function initSmoothScroll() {
 }
 
 /**
- * Project card expand/collapse
+ * Logo/Username rotation on hover (rotates 180° inline)
  */
-function initProjectExpand() {
-  const expandBtns = document.querySelectorAll('.project-expand-btn');
+function initLogoRotation() {
+  const logos = document.querySelectorAll('.logo-text');
   
-  expandBtns.forEach(btn => {
-    btn.addEventListener('click', () => {
-      const details = btn.nextElementSibling;
-      
-      btn.classList.toggle('active');
-      details.classList.toggle('active');
-      
-      // Update button text
-      const icon = btn.querySelector('.expand-icon');
-      if (icon) {
-        icon.textContent = btn.classList.contains('active') ? '−' : '+';
-      }
+  logos.forEach(logo => {
+    let isRotated = false;
+    
+    logo.addEventListener('mouseenter', () => {
+      isRotated = !isRotated;
+      logo.style.transform = isRotated ? 'rotate(180deg)' : 'rotate(0deg)';
     });
   });
 }
@@ -139,7 +154,7 @@ function initProjectExpand() {
  */
 function initScrollAnimations() {
   const animatedElements = document.querySelectorAll(
-    '.activity-card, .project-card, .community-card, .easter-card, .contact-card, .gallery-item, .highlight-item'
+    '.activity-card, .community-card, .easter-card, .contact-card, .gallery-item, .highlight-item, .speaking-item, .past-community-item'
   );
   
   let animationCounter = 0;
@@ -223,45 +238,10 @@ function initTypingEffect() {
  * Hover effects for various elements
  */
 function initHoverEffects() {
-  // Logo rotation hint
-  const logo = document.querySelector('.logo-text');
-  if (logo) {
-    logo.addEventListener('mouseenter', () => {
-      logo.style.transform = 'rotate(180deg)';
-      logo.style.transition = 'transform 0.5s ease';
-    });
-    
-    logo.addEventListener('mouseleave', () => {
-      logo.style.transform = 'rotate(0deg)';
-    });
-  }
-  
-  // Tagline hover effects
-  const taglines = document.querySelectorAll('.tagline');
-  taglines.forEach((tagline, index) => {
-    tagline.addEventListener('mouseenter', () => {
-      tagline.style.transform = `translateX(10px)`;
-    });
-    
-    tagline.addEventListener('mouseleave', () => {
-      tagline.style.transform = 'translateX(0)';
-    });
-  });
-  
-  // Sticker random rotation on hover
-  const stickers = document.querySelectorAll('.sticker');
-  stickers.forEach(sticker => {
-    sticker.addEventListener('mouseenter', () => {
-      const randomRotation = Math.random() * 30 - 15;
-      sticker.style.transform = `rotate(${randomRotation}deg) scale(1.2)`;
-    });
-  });
-  
   // Gallery items
   const galleryItems = document.querySelectorAll('.gallery-item');
   galleryItems.forEach(item => {
     item.addEventListener('mouseenter', () => {
-      // Add subtle random rotation
       const rotation = Math.random() * 4 - 2;
       item.style.transform = `scale(1.02) rotate(${rotation}deg)`;
     });
@@ -328,25 +308,7 @@ function initUsernameReveal() {
 }
 
 /**
- * Parallax effect for floating stickers (subtle)
- */
-function initParallax() {
-  const stickers = document.querySelectorAll('.sticker');
-  
-  if (stickers.length === 0) return;
-  
-  window.addEventListener('scroll', () => {
-    const scrollY = window.pageYOffset;
-    
-    stickers.forEach((sticker, index) => {
-      const speed = 0.1 + (index * 0.05);
-      sticker.style.transform = `translateY(${scrollY * speed}px)`;
-    });
-  });
-}
-
-/**
- * Random fun facts tooltip on certain elements
+ * Random fun facts tooltip on nerd badge click
  */
 function initFunFacts() {
   const facts = [
@@ -423,7 +385,6 @@ function initKonamiCode() {
       konamiIndex++;
       
       if (konamiIndex === konamiCode.length) {
-        // Konami code complete!
         showKonamiEasterEgg();
         konamiIndex = 0;
       }
