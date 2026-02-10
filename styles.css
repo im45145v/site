@@ -276,6 +276,18 @@ button {
   transform-origin: center;
 }
 
+.nav-toggle.active span:nth-child(1) {
+  transform: rotate(45deg) translate(5px, 5px);
+}
+
+.nav-toggle.active span:nth-child(2) {
+  opacity: 0;
+}
+
+.nav-toggle.active span:nth-child(3) {
+  transform: rotate(-45deg) translate(5px, -5px);
+}
+
 .mobile-menu {
   position: fixed;
   top: 56px;
@@ -1686,18 +1698,6 @@ button {
     justify-content: center;
   }
 
-  .nav-toggle.active span:nth-child(1) {
-    transform: rotate(45deg) translate(5px, 5px);
-  }
-
-  .nav-toggle.active span:nth-child(2) {
-    opacity: 0;
-  }
-
-  .nav-toggle.active span:nth-child(3) {
-    transform: rotate(-45deg) translate(5px, -5px);
-  }
-
   .mobile-menu {
     padding: var(--space-lg) var(--space-md);
   }
@@ -1840,7 +1840,7 @@ button {
   }
 
   .photo-gallery {
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: repeat(2, 1fr);
     gap: var(--space-sm);
   }
 
