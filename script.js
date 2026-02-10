@@ -573,6 +573,17 @@ function getEmojiForCommunity(name) {
  * Custom cursor follower
  */
 function initCursorFollower() {
+  // Disable custom cursor on touch devices
+  if ('ontouchstart' in window || navigator.maxTouchPoints > 0) {
+    document.body.style.cursor = 'default';
+    document.querySelectorAll('a, button, [role="button"]').forEach(el => {
+      el.style.cursor = 'pointer';
+    });
+    const cursor = document.querySelector('.cursor-follower');
+    if (cursor) cursor.style.display = 'none';
+    return;
+  }
+  
   const cursor = document.querySelector('.cursor-follower');
   if (!cursor) {
     console.log('Cursor follower element not found');
@@ -635,18 +646,31 @@ function initMobileMenu() {
   
   if (!toggle || !mobileMenu) return;
   
+  function closeMenu() {
+    mobileMenu.classList.remove('active');
+    toggle.classList.remove('active');
+    document.body.style.overflow = '';
+  }
+  
   toggle.addEventListener('click', () => {
-    mobileMenu.classList.toggle('active');
+    const isActive = mobileMenu.classList.toggle('active');
     toggle.classList.toggle('active');
+    document.body.style.overflow = isActive ? 'hidden' : '';
   });
   
   // Close menu on link click
   const mobileLinks = document.querySelectorAll('.mobile-link');
   mobileLinks.forEach(link => {
-    link.addEventListener('click', () => {
-      mobileMenu.classList.remove('active');
-      toggle.classList.remove('active');
-    });
+    link.addEventListener('click', closeMenu);
+  });
+  
+  // Close menu when clicking outside
+  document.addEventListener('click', (e) => {
+    if (mobileMenu.classList.contains('active') && 
+        !mobileMenu.contains(e.target) && 
+        !toggle.contains(e.target)) {
+      closeMenu();
+    }
   });
 }
 
