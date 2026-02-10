@@ -5,7 +5,7 @@
     "username": "IM45145V",
     "tagline": "Engineer | Community Builder | Hackathon Enthusiast",
     "bio": "I am an engineer with a passion for emerging technologies, particularly in DevOps, AI/ML, and web development, coupled with a strong dedication to open source.",
-    "avatar": "assets/images/profile.jpg",
+    "avatar": "images/profile.svg",
     "location": "IIM Ranchi",
     "status": "Open to opportunities",
     "skills": ["Python", "Go", "GitHub", "Postman", "Docker", "DevOps", "AI/ML", "Web Development"]
@@ -208,22 +208,22 @@
   ],
   "gallery": [
     {
-      "src": "assets/images/hackathon1.jpg",
+      "src": "images/hackathon1.svg",
       "caption": "Leading a hackathon session",
       "alt": "Hackathon event photo"
     },
     {
-      "src": "assets/images/award.jpg",
+      "src": "images/award.svg",
       "caption": "Team victory moment",
       "alt": "Award ceremony"
     },
     {
-      "src": "assets/images/workshop.jpg",
+      "src": "images/workshop.svg",
       "caption": "API workshop @ SNIST",
       "alt": "Workshop photo"
     },
     {
-      "src": "assets/images/meetup.jpg",
+      "src": "images/meetup.svg",
       "caption": "Hackerabad monthly meetup",
       "alt": "Community meetup"
     }

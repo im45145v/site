@@ -64,7 +64,8 @@ function populateHeroSection(profile) {
   
   // Update status
   const statusEl = document.getElementById('hero-status');
-  if (statusEl && profile.status) {\n    statusEl.textContent = profile.status;
+  if (statusEl && profile.status) {
+    statusEl.textContent = profile.status;
   }
   
   // Update name
@@ -106,11 +107,11 @@ function populateActivities(activities) {
   if (!container) return;
   
   container.innerHTML = activities.map(activity => `
-    <div class=\"activity-card\" data-tilt>
-      <div class=\"activity-icon\">${activity.icon}</div>
-      <h3 class=\"activity-title\">${activity.title}</h3>
-      <p class=\"activity-desc\">${activity.description}</p>
-      <div class=\"activity-badge\">${activity.badge}</div>
+    <div class="activity-card" data-tilt>
+      <div class="activity-icon">${activity.icon}</div>
+      <h3 class="activity-title">${activity.title}</h3>
+      <p class="activity-desc">${activity.description}</p>
+      <div class="activity-badge">${activity.badge}</div>
     </div>
   `).join('');
 }
@@ -127,8 +128,8 @@ function populateRoles(roles) {
   // Duplicate roles for infinite scroll effect
   const allRoles = [...roles, ...roles];
   track.innerHTML = allRoles.map(role => `
-    <span class=\"role-item\">${role}</span>
-    <span class=\"role-divider\">\u2726</span>
+    <span class="role-item">${role}</span>
+    <span class="role-divider">✦</span>
   `).join('');
 }
 
@@ -155,8 +156,46 @@ function populateCurrentCommunities(communities) {
     return;
   }
   
-  container.innerHTML = currentCommunities.map((comm, index) => {\n    const emoji = getEmojiForCommunity(comm.name);
-    \n    if (index === 0) {\n      // Main card for first community\n      return `\n        <div class=\"community-card main-card\">\n          <div class=\"community-logo-img\">\n            <span class=\"logo-emoji\">${emoji}</span>\n          </div>\n          <h3 class=\"community-name\">${comm.name}</h3>\n          <p class=\"community-role\">${comm.role}</p>\n          <p class=\"community-desc\">${comm.description}</p>\n          ${comm.stats ? `\n            <div class=\"community-stats\">\n              <div class=\"stat\">\n                <span class=\"stat-number\">${comm.stats.members}</span>\n                <span class=\"stat-label\">members</span>\n              </div>\n              <div class=\"stat\">\n                <span class=\"stat-number\">${comm.stats.events}</span>\n                <span class=\"stat-label\">events</span>\n              </div>\n            </div>\n          ` : ''}\n          ${comm.url ? `<a href=\"${comm.url}\" target=\"_blank\" rel=\"noopener\" class=\"community-link\">Visit \u2192</a>` : ''}\n        </div>\n      `;\n    }\n    \n    return `\n      <div class=\"community-card\">\n        <div class=\"community-logo-img\">\n          <span class=\"logo-emoji\">${emoji}</span>\n        </div>\n        <h3 class=\"community-name\">${comm.name}</h3>\n        <p class=\"community-role\">${comm.role}</p>\n        <p class=\"community-desc\">${comm.description}</p>\n      </div>\n    `;\n  }).join('');
+  container.innerHTML = currentCommunities.map((comm, index) => {
+    const emoji = getEmojiForCommunity(comm.name);
+
+    if (index === 0) {
+      return `
+        <div class="community-card main-card">
+          <div class="community-logo-img">
+            <span class="logo-emoji">${emoji}</span>
+          </div>
+          <h3 class="community-name">${comm.name}</h3>
+          <p class="community-role">${comm.role}</p>
+          <p class="community-desc">${comm.description}</p>
+          ${comm.stats ? `
+            <div class="community-stats">
+              <div class="stat">
+                <span class="stat-number">${comm.stats.members}</span>
+                <span class="stat-label">members</span>
+              </div>
+              <div class="stat">
+                <span class="stat-number">${comm.stats.events}</span>
+                <span class="stat-label">events</span>
+              </div>
+            </div>
+          ` : ''}
+          ${comm.url ? `<a href="${comm.url}" target="_blank" rel="noopener" class="community-link">Visit →</a>` : ''}
+        </div>
+      `;
+    }
+
+    return `
+      <div class="community-card">
+        <div class="community-logo-img">
+          <span class="logo-emoji">${emoji}</span>
+        </div>
+        <h3 class="community-name">${comm.name}</h3>
+        <p class="community-role">${comm.role}</p>
+        <p class="community-desc">${comm.description}</p>
+      </div>
+    `;
+  }).join('');
 }
 
 /**
@@ -173,7 +212,15 @@ function populatePastCommunities(communities) {
   container.innerHTML = pastCommunities.map(comm => {
     const emoji = getEmojiForCommunity(comm.name);
     return `
-      <div class=\"past-community-item\">\n        <span class=\"past-logo\">${emoji}</span>\n        <div class=\"past-info\">\n          <span class=\"past-name\">${comm.name}</span>\n          <span class=\"past-role\">${comm.role}</span>\n        </div>\n        ${comm.url ? `<a href=\"${comm.url}\" target=\"_blank\" rel=\"noopener\" class=\"past-link\">\u2197</a>` : ''}\n      </div>\n    `;
+      <div class="past-community-item">
+        <span class="past-logo">${emoji}</span>
+        <div class="past-info">
+          <span class="past-name">${comm.name}</span>
+          <span class="past-role">${comm.role}</span>
+        </div>
+        ${comm.url ? `<a href="${comm.url}" target="_blank" rel="noopener" class="past-link">↗</a>` : ''}
+      </div>
+    `;
   }).join('');
 }
 
@@ -195,7 +242,14 @@ function populateSpeaking(speaking) {
     const itemsContainer = speakerCategory.querySelector('.speaking-items');
     if (itemsContainer) {
       itemsContainer.innerHTML = latestYear.map(item => `
-        <a href=\"${item.url}\" target=\"_blank\" rel=\"noopener\" class=\"speaking-item\">\n          <div class=\"speaking-info\">\n            <span class=\"speaking-event\">${item.event}</span>\n            <span class=\"speaking-topic\">${item.topic}</span>\n          </div>\n          <span class=\"speaking-type\">${item.type}</span>\n        </a>\n      `).join('');
+        <a href="${item.url}" target="_blank" rel="noopener" class="speaking-item">
+          <div class="speaking-info">
+            <span class="speaking-event">${item.event}</span>
+            <span class="speaking-topic">${item.topic}</span>
+          </div>
+          <span class="speaking-type">${item.type}</span>
+        </a>
+      `).join('');
     }
   }
 }
@@ -222,7 +276,14 @@ function populateOrganizing(organizing) {
       const allItems = [...items2026, ...items2024, ...items2021_2023];
       
       itemsContainer.innerHTML = allItems.map(item => `
-        <a href=\"${item.url}\" target=\"_blank\" rel=\"noopener\" class=\"speaking-item\">\n          <div class=\"speaking-info\">\n            <span class=\"speaking-event\">${item.event}</span>\n            <span class=\"speaking-topic\">${item.role}</span>\n          </div>\n          <span class=\"speaking-type\">Event</span>\n        </a>\n      `).join('');
+        <a href="${item.url}" target="_blank" rel="noopener" class="speaking-item">
+          <div class="speaking-info">
+            <span class="speaking-event">${item.event}</span>
+            <span class="speaking-topic">${item.role}</span>
+          </div>
+          <span class="speaking-type">Event</span>
+        </a>
+      `).join('');
     }
   }
 }
@@ -238,7 +299,7 @@ function populateTerminal(education) {
   
   terminalOutput.innerHTML = education.map(edu => {
     const status = edu.status === 'Pursuing' ? '(pursuing)' : '';
-    return `<span class=\"output-line\">\u2192 ${edu.degree} ${status} @ ${edu.institution}</span>`;
+    return `<span class="output-line">→ ${edu.degree} ${status} @ ${edu.institution}</span>`;
   }).join('');
 }
 
@@ -293,8 +354,10 @@ function initCursorFollower() {
     cursorX += dx * 0.15;
     cursorY += dy * 0.15;
     
-    cursor.style.left = cursorX - 10 + 'px';
-    cursor.style.top = cursorY - 10 + 'px';
+    const size = cursor.classList.contains('active') ? 50 : 20;
+    const offset = size / 2;
+    cursor.style.left = cursorX - offset + 'px';
+    cursor.style.top = cursorY - offset + 'px';
     
     requestAnimationFrame(animateCursor);
   }
