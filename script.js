@@ -15,6 +15,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initHoverEffects();
   initUsernameReveal();
   initLogoRotation();
+  initSpeakingAccordion();
   loadDataFromJSON();
   
   // Initialize fun facts after a small delay to ensure DOM is ready
@@ -52,6 +53,9 @@ async function loadDataFromJSON() {
     populateTerminal(data.education);
     populateFunFacts(data.funFacts);
     populateContact(data.contact, data.profile);
+    
+    // Re-init accordion after dynamic content is loaded
+    initSpeakingAccordion();
     
     console.log('Data populated from JSON');
     
@@ -672,6 +676,49 @@ function initMobileMenu() {
       closeMenu();
     }
   });
+}
+
+/**
+ * Speaking section accordion for mobile (click to expand)
+ */
+function initSpeakingAccordion() {
+  function setupAccordion() {
+    const isMobile = window.matchMedia('(max-width: 768px)').matches;
+    const headers = document.querySelectorAll('.speaking-year');
+    
+    headers.forEach(header => {
+      const items = header.nextElementSibling;
+      if (!items || !items.classList.contains('speaking-items')) return;
+      
+      if (isMobile) {
+        // Collapse by default on mobile
+        header.classList.remove('expanded');
+        items.classList.remove('expanded');
+        
+        // Remove old listener if any
+        header.removeEventListener('click', header._accordionHandler);
+        
+        header._accordionHandler = () => {
+          const isExpanded = header.classList.contains('expanded');
+          header.classList.toggle('expanded');
+          items.classList.toggle('expanded');
+        };
+        
+        header.addEventListener('click', header._accordionHandler);
+      } else {
+        // On desktop, ensure everything is visible and remove click handlers
+        header.classList.remove('expanded');
+        items.classList.remove('expanded');
+        if (header._accordionHandler) {
+          header.removeEventListener('click', header._accordionHandler);
+          header._accordionHandler = null;
+        }
+      }
+    });
+  }
+  
+  setupAccordion();
+  window.addEventListener('resize', setupAccordion);
 }
 
 /**

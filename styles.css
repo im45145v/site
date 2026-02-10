@@ -1703,9 +1703,13 @@ button {
   }
 
   .hero-main {
-    flex-direction: column-reverse;
+    flex-direction: column;
     text-align: center;
-    gap: var(--space-xl);
+    gap: var(--space-lg);
+  }
+
+  .hero-image {
+    order: -1;
   }
 
   .hero-text {
@@ -1714,6 +1718,18 @@ button {
 
   .hero-badge {
     justify-content: center;
+  }
+
+  .hero-title {
+    margin-bottom: var(--space-md);
+  }
+
+  .hero-taglines {
+    margin-bottom: var(--space-md);
+  }
+
+  .hero-personality {
+    margin-bottom: var(--space-lg);
   }
 
   .hero-terminal {
@@ -1731,12 +1747,32 @@ button {
   }
 
   .activities-grid {
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(2, 1fr);
     gap: var(--space-md);
   }
 
   .activity-card {
-    padding: var(--space-lg);
+    padding: var(--space-md);
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    aspect-ratio: 1;
+    justify-content: center;
+  }
+
+  .activity-desc {
+    display: none;
+  }
+
+  .activity-icon {
+    font-size: 2rem;
+    margin-bottom: var(--space-sm);
+  }
+
+  .activity-title {
+    font-size: 1rem;
+    margin-bottom: var(--space-sm);
   }
 
   .community-grid {
@@ -1769,6 +1805,37 @@ button {
 
   .speaking-category {
     padding: var(--space-lg);
+  }
+
+  .speaking-year {
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0;
+  }
+
+  .speaking-year::after {
+    content: '＋';
+    font-size: 1.2rem;
+    color: var(--text-muted);
+    transition: transform var(--transition-normal);
+  }
+
+  .speaking-year.expanded::after {
+    content: '−';
+  }
+
+  .speaking-year.expanded {
+    margin-bottom: var(--space-lg);
+  }
+
+  .speaking-items {
+    display: none;
+  }
+
+  .speaking-items.expanded {
+    display: flex;
   }
 
   .speaking-item {
