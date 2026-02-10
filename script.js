@@ -682,6 +682,8 @@ function initMobileMenu() {
  * Speaking section accordion for mobile (click to expand)
  */
 function initSpeakingAccordion() {
+  const handlers = new WeakMap();
+  
   function setupAccordion() {
     const isMobile = window.matchMedia('(max-width: 768px)').matches;
     const headers = document.querySelectorAll('.speaking-year');
@@ -690,35 +692,39 @@ function initSpeakingAccordion() {
       const items = header.nextElementSibling;
       if (!items || !items.classList.contains('speaking-items')) return;
       
+      // Remove old listener if any
+      const oldHandler = handlers.get(header);
+      if (oldHandler) {
+        header.removeEventListener('click', oldHandler);
+        handlers.delete(header);
+      }
+      
       if (isMobile) {
         // Collapse by default on mobile
         header.classList.remove('expanded');
         items.classList.remove('expanded');
         
-        // Remove old listener if any
-        header.removeEventListener('click', header._accordionHandler);
-        
-        header._accordionHandler = () => {
-          const isExpanded = header.classList.contains('expanded');
+        const handler = () => {
           header.classList.toggle('expanded');
           items.classList.toggle('expanded');
         };
         
-        header.addEventListener('click', header._accordionHandler);
+        handlers.set(header, handler);
+        header.addEventListener('click', handler);
       } else {
-        // On desktop, ensure everything is visible and remove click handlers
+        // On desktop, ensure everything is visible
         header.classList.remove('expanded');
         items.classList.remove('expanded');
-        if (header._accordionHandler) {
-          header.removeEventListener('click', header._accordionHandler);
-          header._accordionHandler = null;
-        }
       }
     });
   }
   
+  let resizeTimer;
   setupAccordion();
-  window.addEventListener('resize', setupAccordion);
+  window.addEventListener('resize', () => {
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(setupAccordion, 150);
+  });
 }
 
 /**
