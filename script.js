@@ -4,6 +4,8 @@
  * Updated: Feb 9, 2026 - Fixed cursor, communities, and nerd badge
  */
 
+const speakingAccordionHandlers = new WeakMap();
+
 document.addEventListener('DOMContentLoaded', () => {
   // Initialize all components
   console.log('DOM loaded, initializing components...');
@@ -15,6 +17,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initHoverEffects();
   initUsernameReveal();
   initLogoRotation();
+  initSpeakingAccordion();
   loadDataFromJSON();
   
   // Initialize fun facts after a small delay to ensure DOM is ready
@@ -52,6 +55,9 @@ async function loadDataFromJSON() {
     populateTerminal(data.education);
     populateFunFacts(data.funFacts);
     populateContact(data.contact, data.profile);
+    
+    // Re-init accordion after dynamic content is loaded
+    initSpeakingAccordion();
     
     console.log('Data populated from JSON');
     
@@ -573,6 +579,17 @@ function getEmojiForCommunity(name) {
  * Custom cursor follower
  */
 function initCursorFollower() {
+  // Disable custom cursor on touch devices
+  if ('ontouchstart' in window || navigator.maxTouchPoints > 0) {
+    document.body.style.cursor = 'default';
+    document.querySelectorAll('a, button, [role="button"]').forEach(el => {
+      el.style.cursor = 'pointer';
+    });
+    const cursor = document.querySelector('.cursor-follower');
+    if (cursor) cursor.style.display = 'none';
+    return;
+  }
+  
   const cursor = document.querySelector('.cursor-follower');
   if (!cursor) {
     console.log('Cursor follower element not found');
@@ -635,18 +652,78 @@ function initMobileMenu() {
   
   if (!toggle || !mobileMenu) return;
   
+  function closeMenu() {
+    mobileMenu.classList.remove('active');
+    toggle.classList.remove('active');
+    document.body.style.overflow = '';
+  }
+  
   toggle.addEventListener('click', () => {
-    mobileMenu.classList.toggle('active');
+    const isActive = mobileMenu.classList.toggle('active');
     toggle.classList.toggle('active');
+    document.body.style.overflow = isActive ? 'hidden' : '';
   });
   
   // Close menu on link click
   const mobileLinks = document.querySelectorAll('.mobile-link');
   mobileLinks.forEach(link => {
-    link.addEventListener('click', () => {
-      mobileMenu.classList.remove('active');
-      toggle.classList.remove('active');
+    link.addEventListener('click', closeMenu);
+  });
+  
+  // Close menu when clicking outside
+  document.addEventListener('click', (e) => {
+    if (mobileMenu.classList.contains('active') && 
+        !mobileMenu.contains(e.target) && 
+        !toggle.contains(e.target)) {
+      closeMenu();
+    }
+  });
+}
+
+/**
+ * Speaking section accordion for mobile (click to expand)
+ */
+function initSpeakingAccordion() {
+  function setupAccordion() {
+    const isMobile = window.matchMedia('(max-width: 768px)').matches;
+    const headers = document.querySelectorAll('.speaking-year');
+    
+    headers.forEach(header => {
+      const items = header.nextElementSibling;
+      if (!items || !items.classList.contains('speaking-items')) return;
+      
+      // Remove old listener if any
+      const oldHandler = speakingAccordionHandlers.get(header);
+      if (oldHandler) {
+        header.removeEventListener('click', oldHandler);
+        speakingAccordionHandlers.delete(header);
+      }
+      
+      if (isMobile) {
+        // Collapse by default on mobile
+        header.classList.remove('expanded');
+        items.classList.remove('expanded');
+        
+        const handler = () => {
+          header.classList.toggle('expanded');
+          items.classList.toggle('expanded');
+        };
+        
+        speakingAccordionHandlers.set(header, handler);
+        header.addEventListener('click', handler);
+      } else {
+        // On desktop, ensure everything is visible
+        header.classList.remove('expanded');
+        items.classList.remove('expanded');
+      }
     });
+  }
+  
+  let resizeTimer;
+  setupAccordion();
+  window.addEventListener('resize', () => {
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(setupAccordion, 150);
   });
 }
 
