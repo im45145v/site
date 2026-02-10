@@ -38,21 +38,106 @@ async function loadDataFromJSON() {
     console.log('Data loaded from JSON:', data);
     
     // Populate content from JSON
+    populateMetaTags(data.profile, data.contact);
     populateHeroSection(data.profile);
     populateAboutBio(data.profile);
     populateActivities(data.activities);
     populateRoles(data.roles);
     populateCurrentCommunities(data.communities);
     populatePastCommunities(data.communities);
+    populateHighlights(data.highlights);
+    populateGallery(data.gallery);
     populateSpeaking(data.speaking);
     populateOrganizing(data.organizing);
     populateTerminal(data.education);
+    populateFunFacts(data.funFacts);
+    populateContact(data.contact, data.profile);
     
     console.log('Data populated from JSON');
     
   } catch (error) {
     console.error('Error loading data.json:', error);
     console.log('Using static HTML content');
+  }
+}
+
+/**
+ * Populate meta tags and structured data
+ */
+function populateMetaTags(profile, contact) {
+  if (!profile) return;
+  
+  // Update page title
+  if (profile.name && profile.tagline) {
+    document.title = `${profile.name} — ${profile.tagline}`;
+  }
+  
+  // Update meta descriptions
+  const descriptionMeta = document.querySelector('meta[name="description"]');
+  if (descriptionMeta && profile.bio) {
+    const shortBio = profile.bio.substring(0, 160);
+    descriptionMeta.setAttribute('content', shortBio);
+  }
+  
+  // Update Open Graph tags
+  const ogTitle = document.querySelector('meta[property="og:title"]');
+  if (ogTitle && profile.name && profile.tagline) {
+    ogTitle.setAttribute('content', `${profile.name} — ${profile.tagline}`);
+  }
+  
+  const ogDescription = document.querySelector('meta[property="og:description"]');
+  if (ogDescription && profile.tagline) {
+    ogDescription.setAttribute('content', `${profile.tagline}. ${profile.bio ? profile.bio.substring(0, 100) : ''}`);
+  }
+  
+  const ogImage = document.querySelector('meta[property="og:image"]');
+  if (ogImage && profile.avatar) {
+    ogImage.setAttribute('content', `https://im45145v.dev/${profile.avatar}`);
+  }
+  
+  // Update Twitter Card tags
+  const twitterTitle = document.querySelector('meta[name="twitter:title"]');
+  if (twitterTitle && profile.name && profile.tagline) {
+    twitterTitle.setAttribute('content', `${profile.name} — ${profile.tagline}`);
+  }
+  
+  const twitterDescription = document.querySelector('meta[name="twitter:description"]');
+  if (twitterDescription && profile.tagline) {
+    twitterDescription.setAttribute('content', `${profile.tagline}. ${profile.bio ? profile.bio.substring(0, 100) : ''}`);
+  }
+  
+  const twitterImage = document.querySelector('meta[name="twitter:image"]');
+  if (twitterImage && profile.avatar) {
+    twitterImage.setAttribute('content', `https://im45145v.dev/${profile.avatar}`);
+  }
+  
+  const twitterSite = document.querySelector('meta[name="twitter:site"]');
+  if (twitterSite && profile.username) {
+    twitterSite.setAttribute('content', `@${profile.username.toLowerCase()}`);
+  }
+  
+  // Update structured data
+  if (profile.name && contact) {
+    const structuredData = {
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": profile.fullName || profile.name,
+      "alternateName": profile.username,
+      "url": "https://im45145v.dev",
+      "jobTitle": profile.tagline || "Engineer & Community Builder",
+      "description": profile.bio,
+      "sameAs": []
+    };
+    
+    if (contact.github) structuredData.sameAs.push(contact.github);
+    if (contact.twitter) structuredData.sameAs.push(contact.twitter);
+    if (contact.linkedin) structuredData.sameAs.push(contact.linkedin);
+    
+    // Update or create structured data script
+    let structuredDataScript = document.querySelector('script[type="application/ld+json"]');
+    if (structuredDataScript) {
+      structuredDataScript.textContent = JSON.stringify(structuredData, null, 2);
+    }
   }
 }
 
@@ -301,6 +386,169 @@ function populateTerminal(education) {
     const status = edu.status === 'Pursuing' ? '(pursuing)' : '';
     return `<span class="output-line">→ ${edu.degree} ${status} @ ${edu.institution}</span>`;
   }).join('');
+}
+
+/**
+ * Populate highlights section
+ */
+function populateHighlights(highlights) {
+  if (!highlights || !Array.isArray(highlights)) return;
+  
+  const container = document.querySelector('.community-highlights');
+  if (!container) return;
+  
+  const highlightsHTML = highlights.map(item => `
+    <div class="highlight-item">
+      <span class="highlight-emoji">${item.emoji}</span>
+      <span class="highlight-text">${item.text}</span>
+    </div>
+  `).join('');
+  
+  container.innerHTML = `
+    <h4 class="highlights-title">Event Highlights</h4>
+    ${highlightsHTML}
+  `;
+}
+
+/**
+ * Populate photo gallery
+ */
+function populateGallery(gallery) {
+  if (!gallery || !Array.isArray(gallery)) return;
+  
+  const container = document.getElementById('gallery-container');
+  if (!container) return;
+  
+  container.innerHTML = gallery.map((item, index) => {
+    const className = index === 0 ? 'gallery-item large' : 'gallery-item';
+    return `
+      <div class="${className}">
+        <img src="${item.src}" alt="${item.alt}" width="${index === 0 ? '800' : '600'}" height="600" loading="lazy">
+        <div class="gallery-caption">${item.caption}</div>
+      </div>
+    `;
+  }).join('');
+}
+
+/**
+ * Populate fun facts section
+ */
+function populateFunFacts(funFacts) {
+  if (!funFacts) return;
+  
+  // Populate music
+  if (funFacts.music && Array.isArray(funFacts.music)) {
+    const musicContainer = document.querySelector('.music-items');
+    if (musicContainer) {
+      musicContainer.innerHTML = funFacts.music.map(artist => `
+        <div class="music-item">
+          <span class="artist-name">${artist.artist}</span>
+          <span class="music-vibe">${artist.vibe}</span>
+        </div>
+      `).join('');
+    }
+  }
+  
+  // Populate watching
+  if (funFacts.watching) {
+    const watchingText = document.querySelector('.watching-text');
+    if (watchingText) {
+      watchingText.textContent = funFacts.watching;
+    }
+  }
+  
+  // Populate story preference
+  if (funFacts.storyPreference) {
+    const heroesText = document.querySelector('.heroes-text');
+    if (heroesText) {
+      heroesText.textContent = funFacts.storyPreference;
+    }
+  }
+}
+
+/**
+ * Populate contact section
+ */
+function populateContact(contact, profile) {
+  if (!contact) return;
+  
+  const contactOptions = document.querySelector('.contact-options');
+  if (!contactOptions) return;
+  
+  const contactCards = [];
+  
+  if (contact.email) {
+    contactCards.push(`
+      <a href="mailto:${contact.email}" class="contact-card email-card">
+        <span class="contact-icon">📧</span>
+        <span class="contact-label">Email</span>
+        <span class="contact-value">Drop a mail</span>
+      </a>
+    `);
+  }
+  
+  if (contact.linkedin) {
+    contactCards.push(`
+      <a href="${contact.linkedin}" target="_blank" rel="noopener" class="contact-card linkedin-card">
+        <span class="contact-icon">💼</span>
+        <span class="contact-label">LinkedIn</span>
+        <span class="contact-value">Let's connect</span>
+      </a>
+    `);
+  }
+  
+  if (contact.twitter) {
+    contactCards.push(`
+      <a href="${contact.twitter}" target="_blank" rel="noopener" class="contact-card twitter-card">
+        <span class="contact-icon">🐦</span>
+        <span class="contact-label">Twitter</span>
+        <span class="contact-value">Follow/DM</span>
+      </a>
+    `);
+  }
+  
+  if (contact.github) {
+    contactCards.push(`
+      <a href="${contact.github}" target="_blank" rel="noopener" class="contact-card github-card">
+        <span class="contact-icon">🐙</span>
+        <span class="contact-label">GitHub</span>
+        <span class="contact-value">See my code</span>
+      </a>
+    `);
+  }
+  
+  if (contact.wall) {
+    contactCards.push(`
+      <a href="${contact.wall}" target="_blank" rel="noopener" class="contact-card wall-card">
+        <span class="contact-icon">📝</span>
+        <span class="contact-label">Leave a Note</span>
+        <span class="contact-value">Sign my wall</span>
+      </a>
+    `);
+  }
+  
+  contactOptions.innerHTML = contactCards.join('');
+  
+  // Update location in footer note if available
+  if (profile && profile.location) {
+    const footerNote = document.querySelector('.footer-note');
+    if (footerNote) {
+      footerNote.innerHTML = `
+        Currently based in: <strong>${profile.location}</strong> (MBA mode)
+        <br>
+        Always open to interesting conversations.
+      `;
+    }
+  }
+  
+  // Update footer with profile name
+  if (profile && profile.name) {
+    const footerYear = document.querySelector('.footer-year');
+    if (footerYear) {
+      const currentYear = new Date().getFullYear();
+      footerYear.textContent = `© ${currentYear} ${profile.name}`;
+    }
+  }
 }
 
 /**
