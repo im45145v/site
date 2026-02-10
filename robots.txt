@@ -1,4 +1,2 @@
 User-agent: *
 Allow: /
-
-Sitemap: https://im45145v.dev/sitemap.xml

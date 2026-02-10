@@ -87,7 +87,7 @@ body {
   user-select: none;
 }
 
-a, button, [role="button"], input, select, textarea {
+a, button, [role="button"] {
   cursor: none;
 }
 
@@ -160,8 +160,12 @@ button {
     display: none;
   }
   
-  body, a, button, [role="button"], input, select, textarea {
-    cursor: auto;
+  body {
+    cursor: default;
+  }
+  
+  a, button, [role="button"] {
+    cursor: pointer;
   }
 }
 
@@ -1672,8 +1676,12 @@ button {
     display: none;
   }
   
-  body, a, button, [role="button"], input, select, textarea {
-    cursor: auto;
+  body {
+    cursor: default;
+  }
+  
+  a, button, [role="button"] {
+    cursor: pointer;
   }
 }
 
