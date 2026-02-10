@@ -59,6 +59,10 @@
   --shadow-md: 0 4px 20px rgba(0, 0, 0, 0.4);
   --shadow-lg: 0 8px 40px rgba(0, 0, 0, 0.5);
   --shadow-glow: 0 0 40px rgba(124, 58, 237, 0.3);
+
+  /* Navigation */
+  --nav-height: 64px;
+  --nav-offset: 1rem;
 }
 
 /* Reset & Base */
@@ -205,25 +209,34 @@ button {
    ============================================ */
 .nav {
   position: fixed;
-  top: 0;
+  top: var(--nav-offset);
   left: 0;
   right: 0;
-  padding: var(--space-md) var(--space-xl);
+  padding: 0 var(--space-xl);
+  z-index: 1000;
+}
+
+.nav-inner {
+  width: min(1100px, calc(100% - 2rem));
+  margin: 0 auto;
+  min-height: var(--nav-height);
   display: flex;
   justify-content: space-between;
   align-items: center;
+  padding: var(--space-sm) var(--space-lg);
+  border-radius: 999px;
+  background: rgba(12, 12, 20, 0.82);
+  backdrop-filter: blur(22px);
+  border: 1px solid rgba(124, 58, 237, 0.2);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.45);
   z-index: 1000;
-  background: rgba(10, 10, 15, 0.8);
-  backdrop-filter: blur(20px);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
 }
 
 .nav-logo {
   font-weight: 600;
   font-size: 1.3rem;
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
 }
 
 .logo-text {
@@ -243,8 +256,12 @@ button {
 
 .nav-links {
   display: flex;
-  gap: var(--space-xl);
+  gap: var(--space-sm);
   align-items: center;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 999px;
+  padding: 4px;
 }
 
 .nav-link {
@@ -252,11 +269,13 @@ button {
   color: var(--text-secondary);
   transition: var(--transition-fast);
   position: relative;
-  padding: var(--space-sm) var(--space-md);
+  padding: 0.4rem 0.9rem;
+  border-radius: 999px;
 }
 
 .nav-link:hover {
   color: var(--text-primary);
+  background: rgba(124, 58, 237, 0.18);
 }
 
 .nav-toggle {
@@ -264,7 +283,13 @@ button {
   flex-direction: column;
   gap: 5px;
   cursor: pointer;
-  padding: 5px;
+  width: 44px;
+  height: 44px;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: rgba(124, 58, 237, 0.15);
+  border: 1px solid rgba(124, 58, 237, 0.35);
 }
 
 .nav-toggle span {
@@ -290,17 +315,20 @@ button {
 
 .mobile-menu {
   position: fixed;
-  top: 56px;
-  left: 0;
-  right: 0;
+  top: calc(var(--nav-offset) + var(--nav-height) + 0.5rem);
+  left: 50%;
+  transform: translateX(-50%);
+  width: min(520px, calc(100% - 2rem));
   background: rgba(18, 18, 26, 0.98);
-  backdrop-filter: blur(20px);
+  backdrop-filter: blur(22px);
   padding: var(--space-xl);
   display: none;
   flex-direction: column;
   gap: var(--space-lg);
   z-index: 999;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: var(--border-radius-lg);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: var(--shadow-lg);
 }
 
 .mobile-menu.active {
@@ -324,6 +352,19 @@ button {
 }
 
 @media (max-width: 768px) {
+  :root {
+    --nav-height: 56px;
+    --nav-offset: 0.6rem;
+  }
+
+  .nav {
+    padding: 0 var(--space-md);
+  }
+
+  .nav-inner {
+    padding: var(--space-xs) var(--space-md);
+  }
+
   .nav-links {
     display: none;
   }
@@ -1681,21 +1722,16 @@ button {
   }
 
   .nav {
-    padding: var(--space-sm) var(--space-md);
+    padding: 0 var(--space-md);
   }
 
   .nav-logo {
-    position: static;
-    transform: none;
+    font-size: 1.1rem;
   }
 
   .nav-toggle {
-    padding: 10px;
-    min-width: 44px;
-    min-height: 44px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    width: 40px;
+    height: 40px;
   }
 
   .mobile-menu {
@@ -1705,27 +1741,30 @@ button {
   .hero-main {
     flex-direction: column;
     text-align: center;
+    align-items: center;
     gap: var(--space-lg);
   }
 
   .hero-image {
-    order: -1;
+    order: 1;
   }
 
   .hero-text {
     max-width: 100%;
+    order: 2;
   }
 
   .hero-badge {
     justify-content: center;
+    margin-bottom: var(--space-sm);
   }
 
   .hero-title {
-    margin-bottom: var(--space-md);
+    margin-bottom: var(--space-sm);
   }
 
   .hero-taglines {
-    margin-bottom: var(--space-md);
+    margin-bottom: var(--space-sm);
   }
 
   .hero-personality {
@@ -1744,6 +1783,7 @@ button {
   .scroll-hint-wrapper {
     position: static;
     margin-top: var(--space-xl);
+    display: none;
   }
 
   .activities-grid {

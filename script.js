@@ -4,6 +4,8 @@
  * Updated: Feb 9, 2026 - Fixed cursor, communities, and nerd badge
  */
 
+const speakingAccordionHandlers = new WeakMap();
+
 document.addEventListener('DOMContentLoaded', () => {
   // Initialize all components
   console.log('DOM loaded, initializing components...');
@@ -682,8 +684,6 @@ function initMobileMenu() {
  * Speaking section accordion for mobile (click to expand)
  */
 function initSpeakingAccordion() {
-  const handlers = new WeakMap();
-  
   function setupAccordion() {
     const isMobile = window.matchMedia('(max-width: 768px)').matches;
     const headers = document.querySelectorAll('.speaking-year');
@@ -693,10 +693,10 @@ function initSpeakingAccordion() {
       if (!items || !items.classList.contains('speaking-items')) return;
       
       // Remove old listener if any
-      const oldHandler = handlers.get(header);
+      const oldHandler = speakingAccordionHandlers.get(header);
       if (oldHandler) {
         header.removeEventListener('click', oldHandler);
-        handlers.delete(header);
+        speakingAccordionHandlers.delete(header);
       }
       
       if (isMobile) {
@@ -709,7 +709,7 @@ function initSpeakingAccordion() {
           items.classList.toggle('expanded');
         };
         
-        handlers.set(header, handler);
+        speakingAccordionHandlers.set(header, handler);
         header.addEventListener('click', handler);
       } else {
         // On desktop, ensure everything is visible
