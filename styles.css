@@ -500,6 +500,7 @@ button {
   font-size: 0.85rem;
   color: var(--accent-success);
   animation: fadeInUp 0.6s ease;
+  margin-top: var(--space-md);
 }
 
 .badge-dot {
