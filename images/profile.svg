@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#1a1a25"/>
+      <stop offset="100%" style="stop-color:#12121a"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#7c3aed"/>
+      <stop offset="50%" style="stop-color:#06b6d4"/>
+      <stop offset="100%" style="stop-color:#f97316"/>
+    </linearGradient>
+  </defs>
+  <rect width="400" height="400" fill="url(#bg)"/>
+  <circle cx="200" cy="160" r="70" fill="url(#accent)" opacity="0.3"/>
+  <circle cx="200" cy="160" r="50" fill="url(#accent)" opacity="0.5"/>
+  <text x="200" y="170" font-family="sans-serif" font-size="60" fill="white" text-anchor="middle" opacity="0.8">👨‍💻</text>
+  <text x="200" y="300" font-family="sans-serif" font-size="16" fill="#a0a0b0" text-anchor="middle">Profile Photo</text>
+  <text x="200" y="325" font-family="sans-serif" font-size="12" fill="#6a6a7a" text-anchor="middle">Replace with actual image</text>
+</svg>
