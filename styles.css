@@ -66,6 +66,10 @@
 }
 
 /* Reset & Base */
+.print-resume {
+  display: none;
+}
+
 *, *::before, *::after {
   box-sizing: border-box;
   margin: 0;
@@ -1285,6 +1289,86 @@ button {
 }
 
 /* ============================================
+   EDUCATION SECTION
+   ============================================ */
+.education-section {
+  background: var(--bg-primary);
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.education-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: var(--space-xl);
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.education-card {
+  background: var(--gradient-card);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: var(--border-radius-lg);
+  padding: var(--space-xl);
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-lg);
+  transition: var(--transition-normal);
+}
+
+.education-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(124, 58, 237, 0.3);
+}
+
+.education-icon {
+  font-size: 2rem;
+  flex-shrink: 0;
+}
+
+.education-details {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+}
+
+.education-degree {
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.education-institution {
+  font-size: 1rem;
+  color: var(--text-secondary);
+}
+
+.education-year {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  font-family: var(--font-mono);
+}
+
+.education-status {
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  padding: 2px 8px;
+  border-radius: var(--border-radius-sm);
+  width: fit-content;
+}
+
+.education-status.pursuing {
+  background: rgba(124, 58, 237, 0.15);
+  color: var(--accent-primary);
+}
+
+.education-status.completed {
+  background: rgba(34, 197, 94, 0.15);
+  color: var(--accent-success);
+}
+
+/* ============================================
    EASTER EGG SECTION
    ============================================ */
 .easter-section {
@@ -2141,4 +2225,192 @@ a:focus,
 button:focus {
   outline: 2px solid var(--accent-primary);
   outline-offset: 2px;
+}
+
+/* ============================================
+   PRINT STYLES - DIY CUBE RESUME LAYOUT
+   ============================================ */
+@media print {
+  /* Reset everything for print */
+  * {
+    animation: none !important;
+    transition: none !important;
+  }
+
+  body {
+    background: #fff !important;
+    color: #000 !important;
+    font-family: 'Space Grotesk', Arial, sans-serif;
+    font-size: 11pt;
+    margin: 0;
+    padding: 0;
+  }
+
+  /* Hide all normal site content */
+  .nav,
+  .mobile-menu,
+  .cursor-follower,
+  .hero,
+  .about-section,
+  .community-section,
+  .speaking-section,
+  .education-section,
+  .easter-section,
+  .contact-section,
+  .footer,
+  .scroll-hint-wrapper,
+  .floating-stickers,
+  .hero-side-note {
+    display: none !important;
+  }
+
+  /* Show the print resume */
+  .print-resume {
+    display: block !important;
+    width: 100%;
+    padding: 0;
+    margin: 0;
+  }
+
+  /* Cube layout - two columns */
+  .print-cube {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0;
+    width: 100%;
+    min-height: 100vh;
+    page-break-inside: avoid;
+  }
+
+  .cube-side {
+    padding: 30px;
+    border: 2px solid #000;
+  }
+
+  .cube-left {
+    border-right: 1px solid #000;
+  }
+
+  .cube-right {
+    border-left: 1px solid #000;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .print-name {
+    font-family: 'Gajraj One', sans-serif;
+    font-size: 24pt;
+    margin: 0 0 4px 0;
+    color: #000;
+  }
+
+  .print-tagline {
+    font-size: 10pt;
+    color: #444;
+    margin: 0 0 16px 0;
+  }
+
+  .print-section-title {
+    font-size: 11pt;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    border-bottom: 2px solid #000;
+    padding-bottom: 4px;
+    margin: 16px 0 8px 0;
+    color: #000;
+  }
+
+  .print-item {
+    margin-bottom: 10px;
+  }
+
+  .print-item-title {
+    font-weight: 600;
+    font-size: 10pt;
+    color: #000;
+  }
+
+  .print-item-subtitle {
+    font-size: 9pt;
+    color: #444;
+  }
+
+  .print-item-detail {
+    font-size: 9pt;
+    color: #666;
+  }
+
+  .print-skills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-top: 6px;
+  }
+
+  .print-skill {
+    background: #f0f0f0;
+    border: 1px solid #ccc;
+    padding: 2px 8px;
+    border-radius: 3px;
+    font-size: 8pt;
+    color: #000;
+  }
+
+  .print-qr-section {
+    margin-top: auto;
+    text-align: center;
+    padding-top: 20px;
+  }
+
+  .print-qr-section img {
+    width: 120px;
+    height: 120px;
+  }
+
+  .print-qr-label {
+    font-size: 8pt;
+    color: #666;
+    margin-top: 6px;
+  }
+
+  .print-contact-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 6px;
+  }
+
+  .print-contact-item {
+    font-size: 9pt;
+    color: #000;
+  }
+
+  /* Cut guide dashes */
+  .cube-cut-guide {
+    border: 1px dashed #ccc;
+    position: relative;
+  }
+
+  .cube-cut-guide::before {
+    content: '✂ cut here';
+    position: absolute;
+    top: -12px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 7pt;
+    color: #aaa;
+    background: #fff;
+    padding: 0 4px;
+  }
+
+  /* Links should not show URLs in print */
+  a {
+    color: #000 !important;
+    text-decoration: none !important;
+  }
+
+  a::after {
+    content: '' !important;
+  }
 }

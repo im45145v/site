@@ -18,6 +18,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initUsernameReveal();
   initLogoRotation();
   initSpeakingAccordion();
+  initPrintHandler();
   loadDataFromJSON();
   
   // Initialize fun facts after a small delay to ensure DOM is ready
@@ -25,6 +26,32 @@ document.addEventListener('DOMContentLoaded', () => {
     initFunFacts();
   }, 100);
 });
+
+/**
+ * Handle Ctrl+P to show DIY cube resume layout
+ */
+function initPrintHandler() {
+  window.addEventListener('keydown', (e) => {
+    if ((e.ctrlKey || e.metaKey) && e.key === 'p') {
+      e.preventDefault();
+      const printResume = document.querySelector('.print-resume');
+      if (printResume) {
+        printResume.style.display = 'block';
+      }
+      window.print();
+      if (printResume) {
+        printResume.style.display = 'none';
+      }
+    }
+  });
+
+  window.addEventListener('afterprint', () => {
+    const printResume = document.querySelector('.print-resume');
+    if (printResume) {
+      printResume.style.display = 'none';
+    }
+  });
+}
 
 /**
  * Load data from JSON file and populate page
@@ -52,7 +79,8 @@ async function loadDataFromJSON() {
     populateGallery(data.gallery);
     populateSpeaking(data.speaking);
     populateOrganizing(data.organizing);
-    populateTerminal(data.education);
+    populateTerminal(data.profile);
+    populateEducation(data.education);
     populateFunFacts(data.funFacts);
     populateContact(data.contact, data.profile);
     
@@ -380,17 +408,41 @@ function populateOrganizing(organizing) {
 }
 
 /**
- * Populate terminal with education data
+ * Populate terminal with profile details
  */
-function populateTerminal(education) {
-  if (!education || !Array.isArray(education)) return;
+function populateTerminal(profile) {
+  if (!profile || !profile.terminalLines) return;
   
   const terminalOutput = document.querySelector('.terminal-output');
   if (!terminalOutput) return;
   
-  terminalOutput.innerHTML = education.map(edu => {
-    const status = edu.status === 'Pursuing' ? '(pursuing)' : '';
-    return `<span class="output-line">→ ${edu.degree} ${status} @ ${edu.institution}</span>`;
+  terminalOutput.innerHTML = profile.terminalLines.map(line => {
+    return `<span class="output-line">→ ${line}</span>`;
+  }).join('');
+}
+
+/**
+ * Populate education section
+ */
+function populateEducation(education) {
+  if (!education || !Array.isArray(education)) return;
+  
+  const container = document.querySelector('#education-container');
+  if (!container) return;
+  
+  container.innerHTML = education.map(edu => {
+    const statusClass = edu.status === 'Pursuing' ? 'pursuing' : 'completed';
+    return `
+      <div class="education-card">
+        <div class="education-icon">🎓</div>
+        <div class="education-details">
+          <h3 class="education-degree">${edu.degree}</h3>
+          <p class="education-institution">${edu.institution}</p>
+          <span class="education-year">${edu.year}</span>
+          <span class="education-status ${statusClass}">${edu.status}</span>
+        </div>
+      </div>
+    `;
   }).join('');
 }
 
