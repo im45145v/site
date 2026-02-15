@@ -4,24 +4,41 @@
     "fullName": "Malla Venkata Sai Ashish",
     "username": "IM45145V",
     "tagline": "Engineer | Community Builder | Hackathon Enthusiast",
-    "bio": "I am an engineer with a passion for emerging technologies, particularly in DevOps, AI/ML, and web development, coupled with a strong dedication to open source.",
+    "bio": "I am an engineer with a passion for emerging technologies, particularly in AI/ML, and web development, coupled with a strong dedication to open source.",
     "avatar": "images/profile.svg",
     "location": "IIM Ranchi",
     "status": "Open to opportunities",
-    "skills": ["Python", "Go", "GitHub", "Postman", "Docker", "DevOps", "AI/ML", "Web Development"]
+    "skills": ["Python", "Go", "GitHub", "Postman", "Docker", "AI/ML", "Web Development"],
+    "terminalLines": [
+      "Engineer × Community Builder × MBA",
+      "GitHub Campus Expert | Lead @ Hackerabad",
+      "I build things, lead communities, and live at hackathons"
+    ]
   },
   "education": [
     {
       "degree": "MBA",
       "institution": "IIM Ranchi",
       "status": "Pursuing",
-      "year": "2024-2026"
+      "year": "2025-2027"
     },
     {
       "degree": "B.Tech",
       "institution": "SNIST",
       "status": "Completed",
-      "year": "2020-2024"
+      "year": "2021-2025"
+    },
+    {
+      "degree": "12th",
+      "institution": "Tirumala Junior College",
+      "status": "Completed",
+      "year": "2020"
+    },
+    {
+      "degree": "10th",
+      "institution": "Narayana",
+      "status": "Completed",
+      "year": "2018"
     }
   ],
   "activities": [
@@ -34,7 +51,7 @@
     {
       "icon": "🏆",
       "title": "Hackathons",
-      "description": "Competing, judging, organizing—the whole circuit",
+      "description": "Competing, mentoring, organizing—the whole circuit",
       "badge": "obsessed"
     },
     {
@@ -64,7 +81,7 @@
   ],
   "roles": [
     "Events Lead @ Hackerabad",
-    "Postman Student Leader",
+    "GitHub Campus Expert",
     "Junior Executive Member @ Alumni Relations Committee IIM Ranchi",
     "Hackathon Organizer",
     "Community Builder"
@@ -74,7 +91,7 @@
       "name": "Hackerabad",
       "role": "Events Lead",
       "logo": "assets/logos/hackerabad.png",
-      "description": "Hyderabad's builder community. Events, hackathons, workshops, and a Discord server that never sleeps.",
+      "description": "A community of hackers by the students, for the students.",
       "url": "https://twitter.com/hackerabad",
       "stats": {
         "members": "2000+",
@@ -87,10 +104,18 @@
       "role": "Student Leader",
       "logo": "assets/logos/postman.png",
       "description": "Teaching APIs, building workshops, converting REST skeptics one endpoint at a time.",
+      "current": false
+    },
+    {
+      "name": "GitHub Campus Experts",
+      "role": "Campus Expert",
+      "logo": "assets/logos/github.png",
+      "description": "Empowering student communities with GitHub tools, training, and resources.",
+      "url": "https://githubcampus.expert/im45145v",
       "current": true
     },
     {
-      "name": "IIM Ranchi Alumni Committee",
+      "name": "IIM Ranchi - Alumni Relations Committee",
       "role": "Junior Executive Member",
       "logo": "assets/logos/iim-ranchi.png",
       "description": "Building bridges between current students and alumni, fostering connections for career growth.",
@@ -104,7 +129,7 @@
       "current": false
     },
     {
-      "name": "HackPrix",
+      "name": "HackPrix S1",
       "role": "Core Organizer & Mentor",
       "logo": "assets/logos/hackprix.png",
       "description": "Organized and mentored at HackPrix Hackathon.",
@@ -112,7 +137,7 @@
       "current": false
     },
     {
-      "name": "CodeDay",
+      "name": "CodeDay Hyderabad",
       "role": "Organizer",
       "logo": "assets/logos/codeday.png",
       "description": "Organized CodeDay Hyderabad events.",
@@ -132,6 +157,13 @@
       "role": "Student Ambassador",
       "logo": "assets/logos/streamlit.png",
       "description": "Promoted Streamlit and helped developers build data apps.",
+      "current": false
+    },
+    {
+      "name": "Defang",
+      "role": "Campus Ambassador",
+      "logo": "assets/logos/defang.png",
+      "description": "Campus ambassador role supporting Defang community initiatives.",
       "current": false
     }
   ],
@@ -191,7 +223,7 @@
   "highlights": [
     {
       "emoji": "🎪",
-      "text": "Organized 10+ hackathons"
+      "text": "Organized 5+ hackathons"
     },
     {
       "emoji": "🎓",
@@ -202,8 +234,8 @@
       "text": "Mentored 100+ hackers"
     },
     {
-      "emoji": "🌐",
-      "text": "Built cross-city partnerships"
+      "emoji": "🏆",
+      "text": "Won 20+ hackathons"
     }
   ],
   "gallery": [
@@ -246,7 +278,9 @@
     "email": "hello@ashishmala.com",
     "linkedin": "https://linkedin.com/in/ashishmalla",
     "twitter": "https://twitter.com/im45145v",
+    "instagram": "https://instagram.com/im45145v",
     "github": "https://github.com/im45145v",
+    "devpost": "https://devpost.com/im45145v",
     "wall": "https://wall.im45145v.dev"
   },
   "links": {

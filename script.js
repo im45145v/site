@@ -1,30 +1,73 @@
 /**
- * Ashish Malla Portfolio - Funky Interactions v2.0
+ * Ashish Malla Portfolio - Funky Interactions v3.0
  * "Playful chaos with a system underneath" 
- * Updated: Feb 9, 2026 - Fixed cursor, communities, and nerd badge
+ * Updated: Feb 15, 2026 - UI polish, SEO, performance, creative touches
  */
 
 const speakingAccordionHandlers = new WeakMap();
 
 document.addEventListener('DOMContentLoaded', () => {
   // Initialize all components
-  console.log('DOM loaded, initializing components...');
-  initCursorFollower();
-  initMobileMenu();
-  initSmoothScroll();
-  initScrollAnimations();
-  initTypingEffect();
-  initHoverEffects();
-  initUsernameReveal();
-  initLogoRotation();
-  initSpeakingAccordion();
-  loadDataFromJSON();
+  console.log('🚀 DOM loaded, initializing components...');
   
-  // Initialize fun facts after a small delay to ensure DOM is ready
-  setTimeout(() => {
-    initFunFacts();
-  }, 100);
+  try {
+    initCursorFollower();
+    initMobileMenu();
+    initSmoothScroll();
+    initScrollAnimations();
+    initTypingEffect();
+    initHoverEffects();
+    initUsernameReveal();
+    initLogoRotation();
+    initSpeakingAccordion();
+    initPrintHandler();
+    loadDataFromJSON();
+    
+    // Initialize fun facts after a small delay to ensure DOM is ready
+    setTimeout(() => {
+      initFunFacts();
+    }, 100);
+    
+    // Add lazy loading error handling for images
+    document.querySelectorAll('img[loading="lazy"]').forEach(img => {
+      img.addEventListener('error', function() {
+        console.warn('Failed to load image:', this.src);
+        this.style.opacity = '0.3';
+        this.alt = 'Image unavailable';
+      });
+    });
+    
+    console.log('✨ All components initialized successfully');
+  } catch (error) {
+    console.error('❌ Error during initialization:', error);
+  }
 });
+
+/**
+ * Handle Ctrl+P to show DIY cube resume layout
+ */
+function initPrintHandler() {
+  window.addEventListener('keydown', (e) => {
+    if ((e.ctrlKey || e.metaKey) && e.key === 'p') {
+      e.preventDefault();
+      const printResume = document.querySelector('.print-resume');
+      if (printResume) {
+        printResume.style.display = 'block';
+      }
+      window.print();
+      if (printResume) {
+        printResume.style.display = 'none';
+      }
+    }
+  });
+
+  window.addEventListener('afterprint', () => {
+    const printResume = document.querySelector('.print-resume');
+    if (printResume) {
+      printResume.style.display = 'none';
+    }
+  });
+}
 
 /**
  * Load data from JSON file and populate page
@@ -52,7 +95,8 @@ async function loadDataFromJSON() {
     populateGallery(data.gallery);
     populateSpeaking(data.speaking);
     populateOrganizing(data.organizing);
-    populateTerminal(data.education);
+    populateTerminal(data.profile);
+    populateEducation(data.education);
     populateFunFacts(data.funFacts);
     populateContact(data.contact, data.profile);
     
@@ -138,6 +182,8 @@ function populateMetaTags(profile, contact) {
     if (contact.github) structuredData.sameAs.push(contact.github);
     if (contact.twitter) structuredData.sameAs.push(contact.twitter);
     if (contact.linkedin) structuredData.sameAs.push(contact.linkedin);
+    if (contact.instagram) structuredData.sameAs.push(contact.instagram);
+    if (contact.devpost) structuredData.sameAs.push(contact.devpost);
     
     // Update or create structured data script
     let structuredDataScript = document.querySelector('script[type="application/ld+json"]');
@@ -249,13 +295,15 @@ function populateCurrentCommunities(communities) {
   
   container.innerHTML = currentCommunities.map((comm, index) => {
     const emoji = getEmojiForCommunity(comm.name);
+    const logoUrl = getLogoForCommunity(comm.name);
+    const logoHtml = logoUrl 
+      ? `<div class="community-logo-container"><div class="logo-wrapper"><img src="${logoUrl}" alt="${comm.name}" class="logo-img" width="48" height="48" loading="lazy" decoding="async" onerror="this.onerror=null;this.parentElement.innerHTML='<span class=logo-emoji>${emoji}</span>';"></div></div>`
+      : `<div class="community-logo-container"><div class="logo-wrapper logo-emoji-wrapper"><span class="logo-emoji">${emoji}</span></div></div>`;
 
     if (index === 0) {
       return `
         <div class="community-card main-card">
-          <div class="community-logo-img">
-            <span class="logo-emoji">${emoji}</span>
-          </div>
+          ${logoHtml}
           <h3 class="community-name">${comm.name}</h3>
           <p class="community-role">${comm.role}</p>
           <p class="community-desc">${comm.description}</p>
@@ -278,12 +326,11 @@ function populateCurrentCommunities(communities) {
 
     return `
       <div class="community-card">
-        <div class="community-logo-img">
-          <span class="logo-emoji">${emoji}</span>
-        </div>
+        ${logoHtml}
         <h3 class="community-name">${comm.name}</h3>
         <p class="community-role">${comm.role}</p>
         <p class="community-desc">${comm.description}</p>
+        ${comm.url ? `<a href="${comm.url}" target="_blank" rel="noopener" class="community-link">Visit →</a>` : ''}
       </div>
     `;
   }).join('');
@@ -302,9 +349,13 @@ function populatePastCommunities(communities) {
   
   container.innerHTML = pastCommunities.map(comm => {
     const emoji = getEmojiForCommunity(comm.name);
+    const logoUrl = getLogoForCommunity(comm.name);
+    const logoHtml = logoUrl
+      ? `<div class="past-logo-wrapper"><img src="${logoUrl}" alt="${comm.name}" class="past-logo-img" width="24" height="24" loading="lazy" decoding="async" onerror="this.onerror=null;this.parentElement.innerHTML='<span class=past-logo>${emoji}</span>';"></div>`
+      : `<div class="past-logo-wrapper"><span class="past-logo">${emoji}</span></div>`;
     return `
       <div class="past-community-item">
-        <span class="past-logo">${emoji}</span>
+        ${logoHtml}
         <div class="past-info">
           <span class="past-name">${comm.name}</span>
           <span class="past-role">${comm.role}</span>
@@ -380,17 +431,43 @@ function populateOrganizing(organizing) {
 }
 
 /**
- * Populate terminal with education data
+ * Populate terminal with profile details
  */
-function populateTerminal(education) {
-  if (!education || !Array.isArray(education)) return;
+function populateTerminal(profile) {
+  if (!profile || !profile.terminalLines) return;
   
   const terminalOutput = document.querySelector('.terminal-output');
   if (!terminalOutput) return;
   
-  terminalOutput.innerHTML = education.map(edu => {
-    const status = edu.status === 'Pursuing' ? '(pursuing)' : '';
-    return `<span class="output-line">→ ${edu.degree} ${status} @ ${edu.institution}</span>`;
+  terminalOutput.innerHTML = profile.terminalLines.map(line => {
+    return `<span class="output-line">→ ${line}</span>`;
+  }).join('');
+}
+
+/**
+ * Populate education section
+ */
+function populateEducation(education) {
+  if (!education || !Array.isArray(education)) return;
+  
+  const container = document.querySelector('#education-container') || document.querySelector('.education-grid');
+  if (!container) {
+    console.log('Education container not found');
+    return;
+  }
+  
+  const emojiMap = { 'MBA': '🎓', 'B.Tech': '💻', '12th': '📚', '10th': '🌱' };
+  
+  container.innerHTML = education.map(edu => {
+    const emoji = emojiMap[edu.degree] || '🎓';
+    return `
+      <div class="education-block">
+        <div class="edu-emoji">${emoji}</div>
+        <div class="edu-year">${edu.year}</div>
+        <div class="edu-degree">${edu.degree}</div>
+        <div class="edu-school">${edu.institution}</div>
+      </div>
+    `;
   }).join('');
 }
 
@@ -425,11 +502,28 @@ function populateGallery(gallery) {
   const container = document.getElementById('gallery-container');
   if (!container) return;
   
+  const galleryEmojis = ['📸', '🏆', '🔧', '🤝'];
+  
   container.innerHTML = gallery.map((item, index) => {
     const className = index === 0 ? 'gallery-item large' : 'gallery-item';
+    const emoji = galleryEmojis[index] || '📷';
+    // Check if it's an SVG placeholder or real image
+    const isSvgPlaceholder = item.src.endsWith('.svg');
+    
+    if (isSvgPlaceholder) {
+      return `
+        <div class="${className}">
+          <div class="gallery-placeholder">
+            <span class="placeholder-icon">${emoji}</span>
+            <span class="placeholder-text">${item.caption}</span>
+          </div>
+        </div>
+      `;
+    }
+    
     return `
       <div class="${className}">
-        <img src="${item.src}" alt="${item.alt}" width="${index === 0 ? '800' : '600'}" height="600" loading="lazy">
+        <img src="${item.src}" alt="${item.alt}" width="${index === 0 ? '800' : '600'}" height="600" loading="lazy" onerror="this.parentElement.innerHTML='<div class=gallery-placeholder><span class=placeholder-icon>${emoji}</span><span class=placeholder-text>${item.caption}</span></div>';">
         <div class="gallery-caption">${item.caption}</div>
       </div>
     `;
@@ -512,6 +606,16 @@ function populateContact(contact, profile) {
       </a>
     `);
   }
+
+  if (contact.instagram) {
+    contactCards.push(`
+      <a href="${contact.instagram}" target="_blank" rel="noopener" class="contact-card instagram-card">
+        <span class="contact-icon">📸</span>
+        <span class="contact-label">Instagram</span>
+        <span class="contact-value">Behind the scenes</span>
+      </a>
+    `);
+  }
   
   if (contact.github) {
     contactCards.push(`
@@ -519,6 +623,16 @@ function populateContact(contact, profile) {
         <span class="contact-icon">🐙</span>
         <span class="contact-label">GitHub</span>
         <span class="contact-value">See my code</span>
+      </a>
+    `);
+  }
+
+  if (contact.devpost) {
+    contactCards.push(`
+      <a href="${contact.devpost}" target="_blank" rel="noopener" class="contact-card devpost-card">
+        <span class="contact-icon">🚀</span>
+        <span class="contact-label">Devpost</span>
+        <span class="contact-value">Hackathon trail</span>
       </a>
     `);
   }
@@ -562,17 +676,41 @@ function populateContact(contact, profile) {
  */
 function getEmojiForCommunity(name) {
   const emojiMap = {
-    'Hackerabad': '🏘',
+    'Hackerabad': '�',
     'Postman': '📮',
-    'GitHub': '🐈‍⬛',
+    'GitHub': '🐙',
     'AI Club SNIST': '🤖',
     'HackPrix': '🎯',
     'CodeDay': '🌟',
     'OpinHacks': '💡',
     'Streamlit': '📊',
-    'IIM Ranchi Alumni Committee': '🎓'
+    'IIM Ranchi': '🎓',
+    'Defang': '🛡️'
   };
-  return emojiMap[name] || '\u2b50';
+  
+  // Match partial names
+  for (const [key, emoji] of Object.entries(emojiMap)) {
+    if (name.toLowerCase().includes(key.toLowerCase())) return emoji;
+  }
+  return '⭐';
+}
+
+/**
+ * Get logo image URL for a community (with fallback to emoji)
+ */
+function getLogoForCommunity(name) {
+  const logoMap = {
+    'Hackerabad': 'https://raw.githubusercontent.com/im45145v/Hackerabad-Website/main/assets/Redesigned%20logos/YellowBG.png',
+    'GitHub Campus Experts': 'images/GCE.png',
+    'Postman': 'https://www.postman.com/_ar-assets/images/favicon-1-48.png',
+    'Streamlit': 'https://streamlit.io/images/brand/streamlit-mark-color.png',
+    'Defang': 'images/defang-icon-blue.d33007a5.svg'
+  };
+  
+  for (const [key, url] of Object.entries(logoMap)) {
+    if (name.toLowerCase().includes(key.toLowerCase())) return url;
+  }
+  return null;
 }
 
 /**
@@ -619,10 +757,8 @@ function initCursorFollower() {
     cursorX += dx * 0.15;
     cursorY += dy * 0.15;
     
-    const size = cursor.classList.contains('active') ? 50 : 20;
-    const offset = size / 2;
-    cursor.style.left = cursorX - offset + 'px';
-    cursor.style.top = cursorY - offset + 'px';
+    // Use transform for better performance
+    cursor.style.transform = `translate(${cursorX}px, ${cursorY}px)`;
     
     requestAnimationFrame(animateCursor);
   }
@@ -655,12 +791,14 @@ function initMobileMenu() {
   function closeMenu() {
     mobileMenu.classList.remove('active');
     toggle.classList.remove('active');
+    toggle.setAttribute('aria-expanded', 'false');
     document.body.style.overflow = '';
   }
   
   toggle.addEventListener('click', () => {
     const isActive = mobileMenu.classList.toggle('active');
     toggle.classList.toggle('active');
+    toggle.setAttribute('aria-expanded', isActive ? 'true' : 'false');
     document.body.style.overflow = isActive ? 'hidden' : '';
   });
   
@@ -773,6 +911,14 @@ function initLogoRotation() {
  * Scroll-triggered animations using Intersection Observer
  */
 function initScrollAnimations() {
+  // Check for reduced motion preference
+  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  
+  if (prefersReducedMotion) {
+    // Skip animations if user prefers reduced motion
+    return;
+  }
+  
   const animatedElements = document.querySelectorAll(
     '.activity-card, .community-card, .easter-card, .contact-card, .gallery-item, .highlight-item, .speaking-item, .past-community-item'
   );
@@ -783,7 +929,7 @@ function initScrollAnimations() {
     entries.forEach((entry) => {
       if (entry.isIntersecting) {
         // Stagger the animation using a counter for correct sequencing
-        const delay = animationCounter * 100;
+        const delay = animationCounter * 80;
         animationCounter++;
         
         setTimeout(() => {
@@ -801,7 +947,7 @@ function initScrollAnimations() {
   animatedElements.forEach(el => {
     el.style.opacity = '0';
     el.style.transform = 'translateY(30px)';
-    el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+    el.style.transition = 'opacity 0.6s cubic-bezier(0.4, 0, 0.2, 1), transform 0.6s cubic-bezier(0.4, 0, 0.2, 1)';
     observer.observe(el);
   });
   
@@ -933,13 +1079,17 @@ function initUsernameReveal() {
 function initFunFacts() {
   const facts = [
     "💡 Fun fact: The 4 in IM45145V looks like an 'h' when rotated!",
-    "🎵 Currently vibing to: Noga Erez",
-    "📺 Probably watching a K-drama right now",
+    "🎵 Currently vibing to: Noga Erez ⚡",
+    "📺 Probably watching a K-drama right now 🇰🇷",
     "☕ Fueled by coffee and curiosity",
     "🚀 Hackathon survival rate: surprisingly high",
     "🤓 I collect random facts like some people collect stamps",
     "🌃 Night owl by nature, coffee dependent by choice",
-    "🎮 Still believe in cheat codes for life"
+    "🎮 Still believe in cheat codes for life",
+    "🧠 Tech ↔ Management = the rare dual-boot brain",
+    "📝 I debug with console.log and I'm not ashamed",
+    "🌍 Built communities across 3+ cities",
+    "🎧 Coding playlist: lo-fi + electronic chaos"
   ];
   
   const trigger = document.querySelector('.nerd-badge');
@@ -948,16 +1098,17 @@ function initFunFacts() {
     return;
   }
   
-  console.log('Nerd badge found, adding click listener');
+  console.log('Nerd badge found, adding event listeners');
   
-  trigger.addEventListener('click', (e) => {
-    console.log('Nerd badge clicked!');
+  function showFact(e) {
     e.preventDefault();
     const randomFact = facts[Math.floor(Math.random() * facts.length)];
     
     // Create temporary tooltip
     const tooltip = document.createElement('div');
     tooltip.textContent = randomFact;
+    tooltip.setAttribute('role', 'alert');
+    tooltip.setAttribute('aria-live', 'polite');
     tooltip.style.cssText = `
       position: fixed;
       top: 50%;
@@ -965,12 +1116,14 @@ function initFunFacts() {
       transform: translate(-50%, -50%);
       background: linear-gradient(135deg, #7c3aed, #06b6d4);
       color: white;
-      padding: 1rem 2rem;
+      padding: 1.5rem 2rem;
       border-radius: 12px;
       font-size: 1rem;
       z-index: 9999;
       animation: popIn 0.3s ease;
       box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+      max-width: 90vw;
+      text-align: center;
     `;
     
     document.body.appendChild(tooltip);
@@ -980,7 +1133,16 @@ function initFunFacts() {
       tooltip.style.opacity = '0';
       tooltip.style.transition = 'opacity 0.3s ease';
       setTimeout(() => tooltip.remove(), 300);
-    }, 2000);
+    }, 2500);
+  }
+  
+  trigger.addEventListener('click', showFact);
+  
+  // Add keyboard support
+  trigger.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter' || e.key === ' ') {
+      showFact(e);
+    }
   });
   
   // Add popIn animation
@@ -1043,8 +1205,9 @@ function showKonamiEasterEgg() {
   overlay.innerHTML = `
     <div style="text-align: center; color: white; font-family: 'Space Grotesk', sans-serif;">
       <p style="font-size: 4rem; margin-bottom: 1rem;">🎮</p>
-      <h2 style="font-size: 2rem; margin-bottom: 1rem; background: linear-gradient(135deg, #7c3aed, #06b6d4); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">You found the secret!</h2>
-      <p style="font-size: 1.2rem; color: #a0a0b0; margin-bottom: 2rem;">You know the Konami code? We should definitely talk.</p>
+      <h2 style="font-size: 2rem; margin-bottom: 1rem; background: linear-gradient(135deg, #7c3aed, #06b6d4); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">You found the secret! 🎉</h2>
+      <p style="font-size: 1.2rem; color: #a0a0b0; margin-bottom: 0.5rem;">You know the Konami code? We should definitely talk. 🤝</p>
+      <p style="font-size: 0.9rem; color: #6a6a7a; margin-bottom: 2rem;">Only ~2% of visitors find this. You're built different. ⚡</p>
       <button onclick="this.parentElement.parentElement.remove()" style="background: linear-gradient(135deg, #7c3aed, #06b6d4); color: white; border: none; padding: 1rem 2rem; border-radius: 8px; font-size: 1rem; cursor: pointer;">Nice. 🤝</button>
     </div>
   `;
@@ -1101,16 +1264,18 @@ document.addEventListener('DOMContentLoaded', initNavHighlight);
 console.log(`
 %c👋 Hey there, fellow console explorer!
 
-%cYou're clearly someone who digs deeper.
-I like that.
+%c🔍 You're clearly someone who digs deeper.
+I like that energy. We'd probably get along.
 
-%cWant to chat about code, hackathons, or anything else?
-Find me at @im45145v
+%c🚀 Want to chat about code, hackathons, or random fun stuff?
+Find me at @im45145v on pretty much everything.
 
-%c✨ Rotate "IM45145V" 180° — you'll see it.
+%c✨ Easter egg: Rotate "IM45145V" 180° — you'll see it. 🤯
+%c🎮 Try the Konami code on the page too... ⬆️⬆️⬇️⬇️⬅️➡️⬅️➡️BA
 `, 
 'font-size: 24px; font-weight: bold;',
 'font-size: 14px; color: #7c3aed;',
 'font-size: 14px; color: #06b6d4;',
-'font-size: 12px; color: #f97316; font-style: italic;'
+'font-size: 12px; color: #f97316; font-style: italic;',
+'font-size: 11px; color: #22c55e;'
 );
