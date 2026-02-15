@@ -459,7 +459,6 @@ function populateEducation(education) {
   const emojiMap = { 'MBA': '🎓', 'B.Tech': '💻', '12th': '📚', '10th': '🌱' };
   
   container.innerHTML = education.map(edu => {
-    const statusClass = edu.status === 'Pursuing' ? 'pursuing' : 'completed';
     const emoji = emojiMap[edu.degree] || '🎓';
     return `
       <div class="education-block">
@@ -467,7 +466,6 @@ function populateEducation(education) {
         <div class="edu-year">${edu.year}</div>
         <div class="edu-degree">${edu.degree}</div>
         <div class="edu-school">${edu.institution}</div>
-        <span class="edu-badge ${statusClass}">${edu.status === 'Pursuing' ? 'In Progress' : 'Completed'}</span>
       </div>
     `;
   }).join('');
