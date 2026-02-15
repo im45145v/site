@@ -1,0 +1,51 @@
+# Ashish Malla — Personal Portfolio
+
+> Engineer, community builder, and hackathon enthusiast.
+
+## About
+
+Ashish Malla (username: IM45145V) is an engineer with a passion for AI/ML, web development, and open source. Currently pursuing an MBA at IIM Ranchi. Previously completed B.Tech from SNIST.
+
+## Current Roles
+
+- Events Lead at Hackerabad (1300+ members, 20+ events)
+- GitHub Campus Expert
+- Junior Executive Member at Alumni Relations Committee, IIM Ranchi
+
+## Past Roles
+
+- Postman Student Leader
+- Tech Lead at AI Club SNIST
+- Core Organizer & Mentor at HackPrix
+- Organizer at CodeDay Hyderabad
+- Ground Volunteer & Discord Team at OpinHacks
+- Streamlit Student Ambassador
+- Defang Campus Ambassador
+
+## Skills
+
+Python, Go, GitHub, Postman, Docker, AI/ML, Web Development
+
+## Speaking
+
+- MLOps Introduction at AI Verse by CodeWaveHub (Presentation)
+- APIs 101 using Postman at ABCD II by Hackerabad (Workshop)
+- APIs Acceleration: Turbocharge Your Hackathon Projects at HackPrix (Workshop)
+
+## Contact
+
+- Website: https://im45145v.dev
+- Email: hello@ashishmala.com
+- GitHub: https://github.com/im45145v
+- Twitter: https://twitter.com/im45145v
+- LinkedIn: https://linkedin.com/in/ashishmalla
+- Instagram: https://instagram.com/im45145v
+- Devpost: https://devpost.com/im45145v
+- Wall: https://wall.im45145v.dev
+
+## Fun Facts
+
+- The username "IM45145V" reads as "Ashish" when rotated 180°
+- The "4" in the username looks like an "h" when flipped
+- Hackathon organizer, competitor, and mentor
+- K-drama enthusiast and night owl
