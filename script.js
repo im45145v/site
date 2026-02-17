@@ -142,7 +142,7 @@ function populateMetaTags(profile, contact) {
   
   const ogImage = document.querySelector('meta[property="og:image"]');
   if (ogImage && profile.avatar) {
-    ogImage.setAttribute('content', `https://im45145v.dev/${profile.avatar}`);
+    ogImage.setAttribute('content', `https://im45145v.com/${profile.avatar}`);
   }
   
   // Update Twitter Card tags
@@ -158,7 +158,7 @@ function populateMetaTags(profile, contact) {
   
   const twitterImage = document.querySelector('meta[name="twitter:image"]');
   if (twitterImage && profile.avatar) {
-    twitterImage.setAttribute('content', `https://im45145v.dev/${profile.avatar}`);
+    twitterImage.setAttribute('content', `https://im45145v.com/${profile.avatar}`);
   }
   
   const twitterSite = document.querySelector('meta[name="twitter:site"]');
@@ -173,7 +173,7 @@ function populateMetaTags(profile, contact) {
       "@type": "Person",
       "name": profile.fullName || profile.name,
       "alternateName": profile.username,
-      "url": "https://im45145v.dev",
+      "url": "https://im45145v.com",
       "jobTitle": profile.tagline || "Engineer & Community Builder",
       "description": profile.bio,
       "sameAs": []

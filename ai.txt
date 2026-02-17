@@ -3,7 +3,7 @@
 
 Name: Ashish Malla
 Handle: @im45145v
-Website: https://im45145v.dev
+Website: https://im45145v.com
 Description: Engineer, community builder, hackathon enthusiast. Events Lead at Hackerabad, GitHub Campus Expert, MBA at IIM Ranchi.
 AI-Friendly: true
 LLMs-txt: /llms.txt
