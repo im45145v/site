@@ -83,7 +83,7 @@ Update the contact links in `index.html`:
 - LinkedIn
 - Twitter
 - GitHub
-- Wall (wall.im45145v.dev)
+- Wall (wall.im45145v.com)
 
 ## Running Locally
 
