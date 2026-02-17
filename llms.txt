@@ -20,7 +20,7 @@ Ashish Malla (username: IM45145V) is an engineer with a passion for AI/ML, web d
 - Organizer at CodeDay Hyderabad
 - Ground Volunteer & Discord Team at OpinHacks
 - Streamlit Student Ambassador
-- Defang Campus Ambassador
+- Defang Campus Advocate
 
 ## Skills
 
@@ -35,10 +35,10 @@ Python, Go, GitHub, Postman, Docker, AI/ML, Web Development
 ## Contact
 
 - Website: https://im45145v.com
-- Email: hello@ashishmala.com
+- Email: IM45145V@gmail.com
 - GitHub: https://github.com/im45145v
 - Twitter: https://twitter.com/im45145v
-- LinkedIn: https://linkedin.com/in/ashishmalla
+- LinkedIn: https://www.linkedin.com/in/im45145v
 - Instagram: https://instagram.com/im45145v
 - Devpost: https://devpost.com/im45145v
 - Wall: https://wall.im45145v.com
