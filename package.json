@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "Ashish Malla personal portfolio site",
   "scripts": {
+    "build": "node build.js",
     "dev": "npx serve . -p 3000",
     "start": "npx serve . -p 3000"
   },
