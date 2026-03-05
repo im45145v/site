@@ -502,10 +502,11 @@ function populateGallery(gallery) {
   const container = document.getElementById('gallery-container');
   if (!container) return;
   
-  const galleryEmojis = ['📸', '🏆', '🔧', '🤝'];
+  const galleryEmojis = ['📸', '🏆', '🔧', '🤝', '🎉', '😄', '🙋', '🐙'];
   
   container.innerHTML = gallery.map((item, index) => {
-    const className = index === 0 ? 'gallery-item large' : 'gallery-item';
+    const baseClass = index === 0 ? 'gallery-item large' : 'gallery-item';
+    const className = item.class ? `${baseClass} ${item.class}` : baseClass;
     const emoji = galleryEmojis[index] || '📷';
     // Check if it's an SVG placeholder or real image
     const isSvgPlaceholder = item.src.endsWith('.svg');

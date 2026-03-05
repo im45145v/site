@@ -240,24 +240,51 @@
   ],
   "gallery": [
     {
-      "src": "images/hackathon1.svg",
-      "caption": "Leading a hackathon session",
-      "alt": "Hackathon event photo"
+      "src": "images/GAPTeam.jpg",
+      "caption": "GAP team",
+      "alt": "GAP team"
     },
     {
-      "src": "images/award.svg",
-      "caption": "Team victory moment",
-      "alt": "Award ceremony"
+      "src": "images/HCTeam2.jpg",
+      "caption": "Hackerabad crew at event day",
+      "alt": "Hackerabad team group photo"
     },
     {
-      "src": "images/workshop.svg",
-      "caption": "API workshop @ SNIST",
-      "alt": "Workshop photo"
+      "src": "images/WithAR.jpg",
+      "caption": "With my Favourite senior",
+      "alt": "With my Favourite senior"
     },
     {
-      "src": "images/meetup.svg",
-      "caption": "Hackerabad monthly meetup",
-      "alt": "Community meetup"
+      "src": "images/CDH3Core.jpg",
+      "caption": "CodeDay Hyderabad 3.0 trio",
+      "alt": "CodeDay Hyderabad 3.0 trio"
+    },
+    {
+      "src": "images/CDH1-After-Party.jpg",
+      "caption": "After-party chill with the crew",
+      "alt": "CodeDay Hyderabad after party group photo"
+    },
+    {
+      "src": "images/Funtime.jpg",
+      "caption": "Fun pose with the gang",
+      "alt": "Friends posing together and holding one teammate",
+      "class": "wide"
+    },
+    {
+      "src": "images/ARC.jpeg",
+      "caption": "This one's with the ARC fam 🤝",
+      "alt": "With the ARC team at IIM Ranchi",
+      "class": "wide"
+    },
+    {
+      "src": "images/SoloPic.jpg",
+      "caption": "Haha this is just me",
+      "alt": "Ashish Malla"
+    },
+    {
+      "src": "images/Ritvi.jpg",
+      "caption": "With someone who cheered me on the most ✨",
+      "alt": "With Ritvi"
     }
   ],
   "funFacts": {

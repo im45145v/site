@@ -1,0 +1,12 @@
+{
+  "name": "im45145v-site",
+  "version": "1.0.0",
+  "description": "Ashish Malla personal portfolio site",
+  "scripts": {
+    "dev": "npx serve . -p 3000",
+    "start": "npx serve . -p 3000"
+  },
+  "keywords": [],
+  "author": "Ashish Malla",
+  "license": "MIT"
+}

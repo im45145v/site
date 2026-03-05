@@ -1385,6 +1385,15 @@ button {
   grid-row: span 2;
 }
 
+.gallery-item.wide {
+  grid-column: span 2;
+  aspect-ratio: 16/9;
+}
+
+.gallery-item.wide img {
+  object-position: top;
+}
+
 .gallery-item:hover {
   transform: scale(1.02);
   z-index: 10;
