@@ -4,7 +4,7 @@
     "fullName": "Malla Venkata Sai Ashish",
     "username": "IM45145V",
     "tagline": "Engineer | Community Builder | Hackathon Enthusiast",
-    "bio": "I am an engineer with a passion for emerging technologies, particularly in AI/ML, and web development, coupled with a strong dedication to open source.",
+    "bio": "Engineer at heart with an MBA perspective, connecting people and technology to enable great ideas",
     "avatar": "images/profile.svg",
     "location": "IIM Ranchi",
     "status": "Open to opportunities",
@@ -168,6 +168,14 @@
     }
   ],
   "speaking": {
+    "2025": [
+      {
+        "event": "ScrapYard Hyderabad",
+        "topic": "Streamlit 101",
+        "type": "Tutorial/Workshop",
+        "url": "https://www.instagram.com/scrapyardhyderabad/"
+      }
+    ],
     "2024": [
       {
         "event": "AI Verse by CodeWaveHub",
@@ -210,12 +218,12 @@
     "2021-2023": [
       {
         "event": "OpinHacks",
-        "role": "Organizer",
+        "role": "Volunteer",
         "url": "https://twitter.com/opinhacks"
       },
       {
         "event": "CodeDay Hyderabad",
-        "role": "Organizer",
+        "role": "Co-Regional Manager & Organizer",
         "url": "https://twitter.com/CodeDay_Hyd"
       }
     ]
@@ -285,6 +293,11 @@
       "src": "images/Ritvi.jpg",
       "caption": "With someone who cheered me on the most ✨",
       "alt": "With Ritvi"
+    },
+    {
+      "src": "images/Yash.jpeg",
+      "caption": "With my Favourite kid",
+      "alt": "With Yash"
     }
   ],
   "funFacts": {

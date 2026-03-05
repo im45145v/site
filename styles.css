@@ -1497,6 +1497,19 @@ button {
   transition: var(--transition-normal);
 }
 
+.speaking-item.speaking-more {
+  border-style: dashed;
+  color: var(--text-muted);
+  font-style: italic;
+  cursor: default;
+  pointer-events: none;
+}
+
+.speaking-item.speaking-more:hover {
+  border-color: rgba(255, 255, 255, 0.05);
+  background: rgba(255, 255, 255, 0.02);
+}
+
 .speaking-item:hover {
   border-color: rgba(124, 58, 237, 0.3);
   background: rgba(124, 58, 237, 0.05);

@@ -375,15 +375,17 @@ function populateSpeaking(speaking) {
   const container = document.querySelector('.speaking-grid');
   if (!container) return;
   
-  // Get the latest year's data (2024 or 2026)
-  const latestYear = speaking[2026] || speaking[2024];
-  if (!latestYear) return;
+  // Combine all years in reverse-chronological order
+  const allItems = Object.keys(speaking)
+    .sort((a, b) => parseInt(b) - parseInt(a))
+    .flatMap(year => speaking[year]);
+  if (!allItems.length) return;
   
   const speakerCategory = container.querySelector('.speaking-category');
   if (speakerCategory) {
     const itemsContainer = speakerCategory.querySelector('.speaking-items');
     if (itemsContainer) {
-      itemsContainer.innerHTML = latestYear.map(item => `
+      itemsContainer.innerHTML = allItems.map(item => `
         <a href="${item.url}" target="_blank" rel="noopener" class="speaking-item">
           <div class="speaking-info">
             <span class="speaking-event">${item.event}</span>
@@ -391,7 +393,12 @@ function populateSpeaking(speaking) {
           </div>
           <span class="speaking-type">${item.type}</span>
         </a>
-      `).join('');
+      `).join('') + `
+        <div class="speaking-item speaking-more">
+          <div class="speaking-info">
+            <span class="speaking-event">& many more...</span>
+          </div>
+        </div>`;
     }
   }
 }
@@ -425,7 +432,12 @@ function populateOrganizing(organizing) {
           </div>
           <span class="speaking-type">Event</span>
         </a>
-      `).join('');
+      `).join('') + `
+        <div class="speaking-item speaking-more">
+          <div class="speaking-info">
+            <span class="speaking-event">& many more...</span>
+          </div>
+        </div>`;
     }
   }
 }
