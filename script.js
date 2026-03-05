@@ -74,19 +74,23 @@ function initPrintHandler() {
  */
 async function loadDataFromJSON() {
   try {
-    // Use inlined data (from build step) if available, otherwise fetch
+    // Prefer fresh data.json so dev/prod stay in sync; fallback to inlined data
     let data;
-    if (window.SITE_DATA) {
-      data = window.SITE_DATA;
-      console.log('Data loaded from inline SITE_DATA');
-    } else {
+    try {
       const response = await fetch('data.json');
       if (!response.ok) {
-        console.log('Using static HTML content');
-        return;
+        throw new Error(`HTTP ${response.status}`);
       }
       data = await response.json();
       console.log('Data loaded from fetch:', data);
+    } catch (fetchError) {
+      if (window.SITE_DATA) {
+        data = window.SITE_DATA;
+        console.log('Fetch failed, using inline SITE_DATA');
+      } else {
+        console.log('Using static HTML content');
+        return;
+      }
     }
     
     // Populate content from JSON
