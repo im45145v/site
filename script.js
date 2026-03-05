@@ -423,32 +423,33 @@ function populateOrganizing(organizing) {
   if (!container) return;
   
   const categories = container.querySelectorAll('.speaking-category');
-  const organizerCategory = categories[1]; // Second category
+  const organizingCategory = categories[1];
   
-  if (organizerCategory) {
-    const itemsContainer = organizerCategory.querySelector('.speaking-items');
-    if (itemsContainer) {
-      // Combine all years of organizing
-      const items2026 = organizing[2026] || [];
-      const items2024 = organizing[2024] || [];
-      const items2021_2023 = organizing['2021-2023'] || [];
-      const allItems = [...items2026, ...items2024, ...items2021_2023];
-      
-      itemsContainer.innerHTML = allItems.map(item => `
-        <a href="${item.url}" target="_blank" rel="noopener" class="speaking-item">
-          <div class="speaking-info">
-            <span class="speaking-event">${item.event}</span>
-            <span class="speaking-topic">${item.role}</span>
-          </div>
-          <span class="speaking-type">Event</span>
-        </a>
-      `).join('') + `
-        <div class="speaking-item speaking-more">
-          <div class="speaking-info">
-            <span class="speaking-event">& many more...</span>
-          </div>
-        </div>`;
-    }
+  // Combine all years
+  const items2026 = organizing[2026] || [];
+  const items2024 = organizing[2024] || [];
+  const items2021_2023 = organizing['2021-2023'] || [];
+  const allItems = [...items2026, ...items2024, ...items2021_2023];
+  
+  const renderItems = (items) =>
+    items.map(item => `
+      <a href="${item.url}" target="_blank" rel="noopener" class="speaking-item">
+        <div class="speaking-info">
+          <span class="speaking-event">${item.event}</span>
+          <span class="speaking-topic">${item.role}</span>
+        </div>
+        <span class="speaking-type">${item.type || 'Event'}</span>
+      </a>
+    `).join('') + `
+      <div class="speaking-item speaking-more">
+        <div class="speaking-info">
+          <span class="speaking-event">& many more...</span>
+        </div>
+      </div>`;
+  
+  if (organizingCategory) {
+    const itemsEl = organizingCategory.querySelector('.speaking-items');
+    if (itemsEl) itemsEl.innerHTML = renderItems(allItems);
   }
 }
 
@@ -478,13 +479,9 @@ function populateEducation(education) {
     return;
   }
   
-  const emojiMap = { 'MBA': '🎓', 'B.Tech': '💻', '12th': '📚', '10th': '🌱' };
-  
   container.innerHTML = education.map(edu => {
-    const emoji = emojiMap[edu.degree] || '🎓';
     return `
       <div class="education-block">
-        <div class="edu-emoji">${emoji}</div>
         <div class="edu-year">${edu.year}</div>
         <div class="edu-degree">${edu.degree}</div>
         <div class="edu-school">${edu.institution}</div>
@@ -603,7 +600,7 @@ function populateContact(contact, profile) {
   if (contact.email) {
     contactCards.push(`
       <a href="mailto:${contact.email}" class="contact-card email-card">
-        <span class="contact-icon">📧</span>
+        <span class="contact-icon"><img src="https://cdn.simpleicons.org/gmail/ffffff" alt="" aria-hidden="true" width="40" height="40" loading="lazy"></span>
         <span class="contact-label">Email</span>
         <span class="contact-value">Drop a mail</span>
       </a>
@@ -613,7 +610,7 @@ function populateContact(contact, profile) {
   if (contact.linkedin) {
     contactCards.push(`
       <a href="${contact.linkedin}" target="_blank" rel="noopener" class="contact-card linkedin-card">
-        <span class="contact-icon">💼</span>
+        <span class="contact-icon"><svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="white" aria-hidden="true"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></span>
         <span class="contact-label">LinkedIn</span>
         <span class="contact-value">Let's connect</span>
       </a>
@@ -623,7 +620,7 @@ function populateContact(contact, profile) {
   if (contact.twitter) {
     contactCards.push(`
       <a href="${contact.twitter}" target="_blank" rel="noopener" class="contact-card twitter-card">
-        <span class="contact-icon">🐦</span>
+        <span class="contact-icon"><img src="https://cdn.simpleicons.org/x/ffffff" alt="" aria-hidden="true" width="40" height="40" loading="lazy"></span>
         <span class="contact-label">Twitter</span>
         <span class="contact-value">Follow/DM</span>
       </a>
@@ -633,7 +630,7 @@ function populateContact(contact, profile) {
   if (contact.instagram) {
     contactCards.push(`
       <a href="${contact.instagram}" target="_blank" rel="noopener" class="contact-card instagram-card">
-        <span class="contact-icon">📸</span>
+        <span class="contact-icon"><img src="https://cdn.simpleicons.org/instagram/ffffff" alt="" aria-hidden="true" width="40" height="40" loading="lazy"></span>
         <span class="contact-label">Instagram</span>
         <span class="contact-value">Behind the scenes</span>
       </a>
@@ -643,7 +640,7 @@ function populateContact(contact, profile) {
   if (contact.github) {
     contactCards.push(`
       <a href="${contact.github}" target="_blank" rel="noopener" class="contact-card github-card">
-        <span class="contact-icon">🐙</span>
+        <span class="contact-icon"><img src="https://cdn.simpleicons.org/github/ffffff" alt="" aria-hidden="true" width="40" height="40" loading="lazy"></span>
         <span class="contact-label">GitHub</span>
         <span class="contact-value">See my code</span>
       </a>
@@ -653,7 +650,7 @@ function populateContact(contact, profile) {
   if (contact.devpost) {
     contactCards.push(`
       <a href="${contact.devpost}" target="_blank" rel="noopener" class="contact-card devpost-card">
-        <span class="contact-icon">🚀</span>
+        <span class="contact-icon"><img src="https://cdn.simpleicons.org/devpost/ffffff" alt="" aria-hidden="true" width="40" height="40" loading="lazy"></span>
         <span class="contact-label">Devpost</span>
         <span class="contact-value">Hackathon trail</span>
       </a>
@@ -663,7 +660,7 @@ function populateContact(contact, profile) {
   if (contact.wall) {
     contactCards.push(`
       <a href="${contact.wall}" target="_blank" rel="noopener" class="contact-card wall-card">
-        <span class="contact-icon">📝</span>
+        <span class="contact-icon"><svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="white" aria-hidden="true"><path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2z"/></svg></span>
         <span class="contact-label">Leave a Note</span>
         <span class="contact-value">Sign my wall</span>
       </a>
@@ -1272,8 +1269,8 @@ function initNavHighlight() {
       }
     });
   }, {
-    threshold: 0.3,
-    rootMargin: '-80px 0px -50% 0px'
+    threshold: 0,
+    rootMargin: '-80px 0px -60% 0px'
   });
   
   sections.forEach(section => observer.observe(section));

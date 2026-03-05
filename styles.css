@@ -852,7 +852,7 @@ button {
    SECTIONS BASE
    ============================================ */
 .section {
-  padding: var(--space-4xl) var(--space-xl);
+  padding: var(--space-2xl) var(--space-xl);
   max-width: 1200px;
   margin: 0 auto;
 }
@@ -2032,8 +2032,20 @@ button {
 }
 
 .contact-icon {
-  font-size: 2.5rem;
+  width: 2.5rem;
+  height: 2.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   transition: var(--transition-normal);
+}
+
+.contact-icon img,
+.contact-icon svg {
+  width: 2.5rem;
+  height: 2.5rem;
+  object-fit: contain;
+  display: block;
 }
 
 .contact-card:hover .contact-icon {
